@@ -20,13 +20,14 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    /* Top header: Logo + Name + Motto */
+    /* Top header: Logo + Name + Motto (centered) */
     .header-top {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      text-align: center;
     }
 
     .logo {
@@ -36,10 +37,11 @@
     .company-info {
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .company-name {
-      font-size: 28px;
+      font-size: clamp(20px, 2.5vw, 28px);
       font-weight: bold;
       margin: 0;
     }
@@ -51,23 +53,63 @@
       color: #ffd700;
     }
 
-    /* Bottom header: Navigation */
+    /* Bottom header: Navigation with hover submenu */
     .nav {
       display: flex;
       gap: 30px;
       margin-top: 15px;
       font-weight: 600;
       font-size: 16px;
+      justify-content: center;
+      position: relative;
     }
 
-    .nav a {
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
       color: #ffd700;
       text-decoration: none;
       transition: color 0.2s;
+      padding: 5px 0;
+      display: block;
     }
 
-    .nav a:hover {
+    .nav-item:hover > a {
       color: #ffffff;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #0a2e6f;
+      border-radius: 6px;
+      padding: 10px 0;
+      min-width: 150px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 100;
+      flex-direction: column;
+    }
+
+    .submenu a {
+      padding: 8px 20px;
+      color: #ffd700;
+      font-weight: normal;
+      display: block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .submenu a:hover {
+      background-color: #142d6f;
+      color: #ffffff;
+    }
+
+    .nav-item:hover .submenu {
+      display: flex;
+      flex-direction: column;
     }
 
     /* Main Container */
@@ -89,14 +131,21 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s forwards;
     }
 
+    .projects .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .projects .project-card:nth-child(2) { animation-delay: 0.3s; }
+    .projects .project-card:nth-child(3) { animation-delay: 0.5s; }
+
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
     }
 
     .project-image {
@@ -144,13 +193,25 @@
 
     .progress {
       height: 100%;
-      width: 35%; /* Example progress */
+      width: 0;
       background-color: #0a2e6f;
       text-align: center;
       color: #ffd700;
       line-height: 25px;
       font-weight: bold;
       font-size: 13px;
+      animation: fillProgress 2s forwards;
+    }
+
+    @keyframes fillProgress {
+      to { width: 35%; } /* default, can override inline style */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Button */
@@ -165,11 +226,13 @@
       cursor: pointer;
       text-decoration: none;
       text-align: center;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
 
     .btn:hover {
       background-color: #e6c200;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
     }
 
     /* Footer */
@@ -195,10 +258,26 @@
       </div>
     </div>
     <div class="nav">
-      <a href="#">Dashboard</a>
-      <a href="#">Projects</a>
-      <a href="#">Consultancy</a>
-      <a href="#">Contact</a>
+      <div class="nav-item">
+        <a href="#">Dashboard</a>
+      </div>
+      <div class="nav-item">
+        <a href="#">Projects</a>
+        <div class="submenu">
+          <a href="#">Ongoing Projects</a>
+          <a href="#">Completed Projects</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#">Consultancy</a>
+        <div class="submenu">
+          <a href="#">Residential</a>
+          <a href="#">Commercial</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#">Contact</a>
+      </div>
     </div>
   </div>
 
@@ -222,7 +301,7 @@
               <p><strong>Current Update:</strong> Foundation completed</p>
             </div>
             <div class="progress-bar">
-              <div class="progress">35%</div>
+              <div class="progress" style="animation: fillProgress 2s forwards; width: 35%;">35%</div>
             </div>
           </div>
           <a href="#" class="btn">Enroll / Buy</a>
@@ -243,7 +322,7 @@
               <p><strong>Current Update:</strong> Planning phase</p>
             </div>
             <div class="progress-bar">
-              <div class="progress">10%</div>
+              <div class="progress" style="animation: fillProgress 2s forwards; width: 10%;">10%</div>
             </div>
           </div>
           <a href="#" class="btn">Enroll / Buy</a>
