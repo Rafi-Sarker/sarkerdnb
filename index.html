@@ -14,28 +14,59 @@
 
     /* Header */
     .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background-color: #0a2e6f; /* Royal Blue */
       color: #ffd700; /* Golden */
-      padding: 20px 30px;
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: 1px;
+      padding: 15px 40px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Container */
+    /* Logo */
+    .logo {
+      height: 50px;
+    }
+
+    /* Company Name */
+    .company-name {
+      text-align: center;
+      flex-grow: 1;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Nav Menu */
+    .nav {
+      display: flex;
+      gap: 25px;
+      font-weight: 600;
+    }
+
+    .nav a {
+      color: #ffd700;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: #ffffff;
+    }
+
+    /* Main Container */
     .container {
       padding: 30px;
     }
 
-    /* Cards Layout */
-    .cards {
+    /* Projects Section */
+    .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 25px;
     }
 
-    .card {
+    .project-card {
       background: white;
       border-radius: 12px;
       padding: 25px 20px;
@@ -43,57 +74,59 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .card:hover {
+    .project-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
-    .card h3 {
-      margin: 0;
-      font-size: 18px;
-      color: #0a2e6f; /* Royal Blue */
-      font-weight: 600;
-    }
-
-    .card p {
-      font-size: 28px;
-      margin: 10px 0 0;
-      font-weight: bold;
-      color: #ffd700; /* Golden */
-    }
-
-    /* Progress Bar Section */
-    .progress-container {
-      margin-top: 40px;
-      background: white;
-      padding: 25px 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
-
-    .progress-container h3 {
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
       color: #0a2e6f;
-      margin: 0;
-      font-weight: 600;
+      font-weight: 700;
     }
 
+    .project-card p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    /* Progress Bar */
     .progress-bar {
       background-color: #e0e0e0;
       border-radius: 20px;
       overflow: hidden;
-      height: 28px;
-      margin-top: 15px;
+      height: 25px;
+      margin: 10px 0 15px;
     }
 
     .progress {
       height: 100%;
-      width: 9.375%; /* 3/32 */
-      background-color: #0a2e6f; /* Royal Blue */
+      width: 35%; /* Example progress */
+      background-color: #0a2e6f;
       text-align: center;
-      color: #ffd700; /* Golden */
-      line-height: 28px;
+      color: #ffd700;
+      line-height: 25px;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
+    }
+
+    /* Action Button */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ffd700;
+      color: #0a2e6f;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #e6c200;
     }
 
     /* Footer */
@@ -110,40 +143,46 @@
 
   <!-- Header -->
   <div class="header">
-    Sarker Design & Build - Dashboard
+    <img src="logo.png" alt="Sarker Logo" class="logo">
+    <div class="company-name">Sarker Design & Build</div>
+    <div class="nav">
+      <a href="#">Dashboard</a>
+      <a href="#">Projects</a>
+      <a href="#">Consultancy</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
 
   <!-- Main Container -->
   <div class="container">
 
-    <!-- Cards Section -->
-    <div class="cards">
-      <div class="card">
-        <h3>Ongoing Projects</h3>
-        <p>1</p>
+    <!-- Projects Section -->
+    <div class="projects">
+      <div class="project-card">
+        <h3>Project Alpha</h3>
+        <p>Location: Downtown</p>
+        <p>Start Date: Jan 2026</p>
+        <p>Current Update: Foundation completed</p>
+
+        <div class="progress-bar">
+          <div class="progress">35%</div>
+        </div>
+
+        <a href="#" class="btn">Enroll / Buy</a>
       </div>
 
-      <div class="card">
-        <h3>Total Shares</h3>
-        <p>32</p>
-      </div>
+      <!-- Example for future projects -->
+      <div class="project-card">
+        <h3>Project Beta</h3>
+        <p>Location: Riverside</p>
+        <p>Start Date: Mar 2026</p>
+        <p>Current Update: Planning phase</p>
 
-      <div class="card">
-        <h3>Shares Sold</h3>
-        <p>3</p>
-      </div>
+        <div class="progress-bar">
+          <div class="progress">10%</div>
+        </div>
 
-      <div class="card">
-        <h3>Available Shares</h3>
-        <p>29</p>
-      </div>
-    </div>
-
-    <!-- Progress Bar -->
-    <div class="progress-container">
-      <h3>Project Share Sales Progress</h3>
-      <div class="progress-bar">
-        <div class="progress">9.38%</div>
+        <a href="#" class="btn">Enroll / Buy</a>
       </div>
     </div>
 
