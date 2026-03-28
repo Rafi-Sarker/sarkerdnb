@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarker Design & Build - Investor System</title>
+<title>Sarker Design & Build - Investor Dashboard</title>
 
 <style>
 body {margin:0;font-family:'Segoe UI';background:#f5f7fb;}
@@ -41,8 +41,6 @@ body {margin:0;font-family:'Segoe UI';background:#f5f7fb;}
 .progress-bar {background:#ddd;height:20px;border-radius:20px;overflow:hidden;}
 .progress {height:100%;background:#0a2e6f;color:gold;text-align:center;font-size:12px;}
 
-.btn {display:block;margin-top:10px;padding:10px;background:gold;color:#0a2e6f;text-align:center;border-radius:6px;cursor:pointer;}
-
 .login {display:flex;justify-content:center;align-items:center;height:100vh;}
 .login-box {background:white;padding:30px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
 
@@ -57,6 +55,7 @@ input {width:100%;padding:10px;margin:10px 0;}
 
 <body>
 
+<!-- LOGIN -->
 <div id="loginPage" class="login">
   <div class="login-box">
     <h2>Investor Login</h2>
@@ -66,6 +65,7 @@ input {width:100%;padding:10px;margin:10px 0;}
   </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboardPage" style="display:none;">
 
 <div class="header">
@@ -79,6 +79,7 @@ input {width:100%;padding:10px;margin:10px 0;}
 
 <div class="container">
 
+<!-- SUMMARY -->
 <div class="dashboard">
   <div class="card">
     <h3>Total Investment</h3>
@@ -86,54 +87,21 @@ input {width:100%;padding:10px;margin:10px 0;}
   </div>
 
   <div class="card">
-    <h3>Average ROI</h3>
+    <h3>Expected ROI</h3>
     <p id="roi">0%</p>
   </div>
 
   <div class="card">
     <h3>Total Projects</h3>
-    <p>2</p>
+    <p id="totalProjects">0</p>
   </div>
 </div>
 
-<h2>Ongoing Projects</h2>
+<h2>My Projects</h2>
 
-<div class="projects">
+<div class="projects" id="projectList"></div>
 
-<div class="project-card">
-  <div class="project-content">
-    <h3>Project Alpha</h3>
-    <p>Luxury residential building</p>
-    <p><b>Min Investment:</b> ৳500000</p>
-    <p><b>ROI:</b> 18%</p>
-
-    <div class="progress-bar">
-      <div class="progress" style="width:35%">35%</div>
-    </div>
-
-    <input type="number" id="amount1" placeholder="Enter amount">
-    <div class="btn" onclick="invest(1,18)">Invest</div>
-  </div>
-</div>
-
-<div class="project-card">
-  <div class="project-content">
-    <h3>Project Beta</h3>
-    <p>Commercial complex</p>
-    <p><b>Min Investment:</b> ৳300000</p>
-    <p><b>ROI:</b> 15%</p>
-
-    <div class="progress-bar">
-      <div class="progress" style="width:10%">10%</div>
-    </div>
-
-    <input type="number" id="amount2" placeholder="Enter amount">
-    <div class="btn" onclick="invest(2,15)">Invest</div>
-  </div>
-</div>
-
-</div>
-
+<!-- HISTORY -->
 <div class="history">
   <h2>Investment History</h2>
   <table>
@@ -145,58 +113,65 @@ input {width:100%;padding:10px;margin:10px 0;}
 </div>
 
 </div>
-
 </div>
 
 <script>
-let totalInvestment = 0;
-let avgROI = 0;
-let investments = 0;
-let history = JSON.parse(localStorage.getItem('history')) || [];
+// STATIC DATA (YOU CAN EDIT THIS)
+const investorData = {
+  username: "admin",
+  password: "1234",
+  investments: [
+    {project: "Project Alpha", amount: 500000, roi: 18, progress: 35},
+    {project: "Project Beta", amount: 300000, roi: 15, progress: 10}
+  ]
+};
 
-function login() {
+function login(){
   let u = document.getElementById('username').value;
   let p = document.getElementById('password').value;
 
-  if(u==='admin' && p==='1234'){
+  if(u===investorData.username && p===investorData.password){
     document.getElementById('loginPage').style.display='none';
     document.getElementById('dashboardPage').style.display='block';
-    loadHistory();
+    loadDashboard();
   } else alert('Wrong login');
 }
 
 function logout(){location.reload();}
 
-function invest(projectId, roi){
-  let amountInput = document.getElementById('amount'+projectId);
-  let amount = parseFloat(amountInput.value);
+function loadDashboard(){
+  let total = 0;
+  let roiSum = 0;
 
-  if(!amount || amount<=0){alert('Enter valid amount');return;}
+  let projectHTML = "";
+  let historyHTML = "";
 
-  totalInvestment += amount;
-  avgROI = ((avgROI * investments) + roi) / (investments + 1);
-  investments++;
+  investorData.investments.forEach((inv,i)=>{
+    total += inv.amount;
+    roiSum += inv.roi;
 
-  document.getElementById('investment').innerText='৳'+totalInvestment;
-  document.getElementById('roi').innerText=avgROI.toFixed(2)+'%';
+    projectHTML += `
+    <div class="project-card">
+      <div class="project-content">
+        <h3>${inv.project}</h3>
+        <p><b>Invested:</b> ৳${inv.amount}</p>
+        <p><b>ROI:</b> ${inv.roi}%</p>
 
-  let projectName = projectId===1 ? 'Alpha' : 'Beta';
+        <div class="progress-bar">
+          <div class="progress" style="width:${inv.progress}%">${inv.progress}%</div>
+        </div>
+      </div>
+    </div>`;
 
-  history.push({project:projectName,amount,roi});
-  localStorage.setItem('history',JSON.stringify(history));
-
-  loadHistory();
-  amountInput.value='';
-}
-
-function loadHistory(){
-  let table = document.getElementById('historyTable');
-  table.innerHTML='';
-
-  history.forEach(h=>{
-    let row = `<tr><td>${h.project}</td><td>৳${h.amount}</td><td>${h.roi}%</td></tr>`;
-    table.innerHTML += row;
+    historyHTML += `<tr><td>${inv.project}</td><td>৳${inv.amount}</td><td>${inv.roi}%</td></tr>`;
   });
+
+  document.getElementById('investment').innerText = '৳' + total;
+  document.getElementById('roi').innerText = (roiSum / investorData.investments.length).toFixed(2) + '%';
+  document.getElementById('totalProjects').innerText = investorData.investments.length;
+
+  document.getElementById('projectList').innerHTML = projectHTML;
+  document.getElementById('historyTable').innerHTML = historyHTML;
 }
 </script>
 
