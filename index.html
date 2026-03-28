@@ -21,6 +21,7 @@
       color: #ffd700; /* Golden */
       padding: 15px 40px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
     }
 
     /* Logo */
@@ -28,13 +29,24 @@
       height: 50px;
     }
 
-    /* Company Name */
-    .company-name {
-      text-align: center;
+    /* Company Name & Motto */
+    .company-info {
       flex-grow: 1;
+      text-align: center;
+    }
+
+    .company-name {
       font-size: 24px;
       font-weight: bold;
       letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .motto {
+      font-size: 14px;
+      font-style: italic;
+      color: #ffd700; /* Golden */
+      margin: 2px 0 0;
     }
 
     /* Nav Menu */
@@ -144,7 +156,10 @@
   <!-- Header -->
   <div class="header">
     <img src="logo.png" alt="Sarker Logo" class="logo">
-    <div class="company-name">Sarker Design & Build</div>
+    <div class="company-info">
+      <div class="company-name">Sarker Design & Build</div>
+      <div class="motto">Building Trust Through Excellence</div>
+    </div>
     <div class="nav">
       <a href="#">Dashboard</a>
       <a href="#">Projects</a>
