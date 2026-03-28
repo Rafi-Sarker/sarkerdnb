@@ -3,111 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarker Design & Build - Investor Dashboard</title>
+<title>Sarker Design & Build - Multi Investor System</title>
 
 <style>
 body {margin:0;font-family:'Segoe UI';background:#f5f7fb;}
-
-.header {
- position:sticky;top:0;z-index:1000;
- background:linear-gradient(135deg,#0a2e6f,#123a8c);
- color:gold;padding:20px;text-align:center;
-}
-
+.header {position:sticky;top:0;z-index:1000;background:linear-gradient(135deg,#0a2e6f,#123a8c);color:gold;padding:20px;text-align:center;}
 .nav {display:flex;justify-content:center;gap:20px;margin-top:10px;}
 .nav a {color:gold;text-decoration:none;font-weight:bold;}
-
 .container {padding:20px;max-width:1200px;margin:auto;}
-
 .dashboard {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px;}
-
 .card {background:white;padding:20px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-
 .projects {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
-
-.project-card {
- background:white;border-radius:12px;overflow:hidden;
- box-shadow:0 6px 20px rgba(0,0,0,0.1);
- transition:0.3s;
-}
-
-.project-card:hover {
- transform:translateY(-5px);
- box-shadow:0 15px 35px rgba(10,46,111,0.25);
-}
-
+.project-card {background:white;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.1);transition:0.3s;}
+.project-card:hover {transform:translateY(-5px);box-shadow:0 15px 35px rgba(10,46,111,0.25);}
 .project-content {padding:15px;}
-
 .progress-bar {background:#ddd;height:20px;border-radius:20px;overflow:hidden;}
 .progress {height:100%;background:#0a2e6f;color:gold;text-align:center;font-size:12px;}
-
 .login {display:flex;justify-content:center;align-items:center;height:100vh;}
 .login-box {background:white;padding:30px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-
 input {width:100%;padding:10px;margin:10px 0;}
-
 .history {margin-top:30px;}
 .history table {width:100%;border-collapse:collapse;background:white;}
 .history th, .history td {padding:10px;border-bottom:1px solid #eee;text-align:left;}
-
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
 <div id="loginPage" class="login">
   <div class="login-box">
     <h2>Investor Login</h2>
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
-    <button onclick="login()" class="btn">Login</button>
+    <button onclick="login()">Login</button>
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboardPage" style="display:none;">
-
 <div class="header">
   <h2>Sarker Design & Build</h2>
   <div class="nav">
     <a href="#">Dashboard</a>
-    <a href="#">Projects</a>
     <a href="#" onclick="logout()">Logout</a>
   </div>
 </div>
 
 <div class="container">
 
-<!-- SUMMARY -->
 <div class="dashboard">
-  <div class="card">
-    <h3>Total Investment</h3>
-    <p id="investment">৳0</p>
-  </div>
-
-  <div class="card">
-    <h3>Expected ROI</h3>
-    <p id="roi">0%</p>
-  </div>
-
-  <div class="card">
-    <h3>Total Projects</h3>
-    <p id="totalProjects">0</p>
-  </div>
+  <div class="card"><h3>Total Investment</h3><p id="investment"></p></div>
+  <div class="card"><h3>Expected ROI</h3><p id="roi"></p></div>
+  <div class="card"><h3>Total Projects</h3><p id="totalProjects"></p></div>
 </div>
 
 <h2>My Projects</h2>
-
 <div class="projects" id="projectList"></div>
 
-<!-- HISTORY -->
 <div class="history">
   <h2>Investment History</h2>
   <table>
-    <thead>
-      <tr><th>Project</th><th>Amount</th><th>ROI</th></tr>
-    </thead>
+    <thead><tr><th>Project</th><th>Amount</th><th>ROI</th></tr></thead>
     <tbody id="historyTable"></tbody>
   </table>
 </div>
@@ -116,21 +71,34 @@ input {width:100%;padding:10px;margin:10px 0;}
 </div>
 
 <script>
-// STATIC DATA (YOU CAN EDIT THIS)
-const investorData = {
-  username: "admin",
-  password: "1234",
-  investments: [
-    {project: "Project Alpha", amount: 500000, roi: 18, progress: 35},
-    {project: "Project Beta", amount: 300000, roi: 15, progress: 10}
-  ]
-};
+// MULTI INVESTOR DATA (EDIT HERE)
+const investors = [
+  {
+    username: "rafi",
+    password: "1234",
+    investments: [
+      {project: "Project Alpha", amount: 500000, roi: 18, progress: 35},
+      {project: "Project Beta", amount: 200000, roi: 15, progress: 10}
+    ]
+  },
+  {
+    username: "karim",
+    password: "1234",
+    investments: [
+      {project: "Project Alpha", amount: 300000, roi: 18, progress: 35}
+    ]
+  }
+];
+
+let currentUser = null;
 
 function login(){
   let u = document.getElementById('username').value;
   let p = document.getElementById('password').value;
 
-  if(u===investorData.username && p===investorData.password){
+  currentUser = investors.find(inv => inv.username===u && inv.password===p);
+
+  if(currentUser){
     document.getElementById('loginPage').style.display='none';
     document.getElementById('dashboardPage').style.display='block';
     loadDashboard();
@@ -146,7 +114,7 @@ function loadDashboard(){
   let projectHTML = "";
   let historyHTML = "";
 
-  investorData.investments.forEach((inv,i)=>{
+  currentUser.investments.forEach(inv=>{
     total += inv.amount;
     roiSum += inv.roi;
 
@@ -156,7 +124,6 @@ function loadDashboard(){
         <h3>${inv.project}</h3>
         <p><b>Invested:</b> ৳${inv.amount}</p>
         <p><b>ROI:</b> ${inv.roi}%</p>
-
         <div class="progress-bar">
           <div class="progress" style="width:${inv.progress}%">${inv.progress}%</div>
         </div>
@@ -166,9 +133,9 @@ function loadDashboard(){
     historyHTML += `<tr><td>${inv.project}</td><td>৳${inv.amount}</td><td>${inv.roi}%</td></tr>`;
   });
 
-  document.getElementById('investment').innerText = '৳' + total;
-  document.getElementById('roi').innerText = (roiSum / investorData.investments.length).toFixed(2) + '%';
-  document.getElementById('totalProjects').innerText = investorData.investments.length;
+  document.getElementById('investment').innerText = '৳'+total;
+  document.getElementById('roi').innerText = (roiSum/currentUser.investments.length).toFixed(2)+'%';
+  document.getElementById('totalProjects').innerText = currentUser.investments.length;
 
   document.getElementById('projectList').innerHTML = projectHTML;
   document.getElementById('historyTable').innerHTML = historyHTML;
