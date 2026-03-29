@@ -5,7 +5,7 @@ const investors = [
     password: "1234",
     investments: [
       {project:"Project Alpha",amount:500000,roi:0,progress:35},
-      {project:"Project Beta",amount:200000,roi:0,progress:10}
+      {project:"Project Alpha",amount:200000,roi:0,progress:10}
     ]
   },
   {
