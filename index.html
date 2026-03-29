@@ -1,79 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarker Design & Build - Dashboard</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="dashboardPage">
-  <!-- Header -->
-  <div class="header">
-    <h2>Sarker Design & Build</h2>
-    <div class="nav">
-      <a href="index.html">Dashboard</a>
-      <a href="projects.html">Projects</a>
-      <a href="profile.html">Profile</a>
-      <a href="user.html">Login</a>
-    </div>
-  </div>
+    <!-- Header -->
+    <header class="header">
+        <h1>SARKER Design & Build</h1>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="details.html">Projects</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
 
-  <!-- Main Container -->
-  <div class="container">
-    <div class="projects">
-      <div class="project-card">
-        <img src="37.jpg" alt="Prime Tower" class="project-image">
-        <div class="project-content">
-          <div>
-            <h3 class="project-title">Prime Tower</h3>
-            <p class="project-description">
-              A luxury residential building with state-of-the-art facilities and sustainable construction methods.
-            </p>
-            <div class="project-details">
-              <p><strong>Location:</strong> Downtown</p>
-              <p><strong>Start Date:</strong> Jan 2026</p>
-              <p><strong>Current Update:</strong> Foundation completed</p>
-            </div>
-            <div class="progress-bar">
-              <div class="progress" style="width:35%">35%</div>
-            </div>
-          </div>
-          <a href="PrimeTower.html" class="btn">Details</a>
-        </div>
-      </div>
+    <div class="container">
 
-      <div class="project-card">
-        <img src="3.jpg" alt="Project Beta" class="project-image">
-        <div class="project-content">
-          <div>
-            <h3 class="project-title">Project Beta</h3>
-            <p class="project-description">
-              Riverside commercial complex designed for premium business and retail spaces with modern architecture.
-            </p>
-            <div class="project-details">
-              <p><strong>Location:</strong> Riverside</p>
-              <p><strong>Start Date:</strong> Mar 2026</p>
-              <p><strong>Current Update:</strong> Planning phase</p>
+        <!-- Dashboard Cards -->
+        <section class="dashboard">
+            <div class="card">
+                <h3>Total Projects</h3>
+                <p>12</p>
             </div>
-            <div class="progress-bar">
-              <div class="progress" style="width:10%">10%</div>
+            <div class="card">
+                <h3>Ongoing</h3>
+                <p>5</p>
             </div>
-          </div>
-          <a href="#" class="btn">Enroll / Buy</a>
-        </div>
-      </div>
+            <div class="card">
+                <h3>Completed</h3>
+                <p>7</p>
+            </div>
+        </section>
+
+        <!-- Projects Overview -->
+        <section class="projects">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x180" class="project-image" alt="Project 1">
+                <div class="project-content">
+                    <h3 class="project-title">5-Storey Building</h3>
+                    <p class="project-description">Ongoing project in Dhaka, expected completion: Dec 2026.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;">40%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x180" class="project-image" alt="Project 2">
+                <div class="project-content">
+                    <h3 class="project-title">Residential Complex</h3>
+                    <p class="project-description">Completed last year with client satisfaction.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%;">100%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </div>
-  </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    © 2026 Sarker Design & Build | Civil Construction & Consultancy
-  </div>
-</div>
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 SARKER Design & Build
+    </footer>
 
 </body>
 </html>
