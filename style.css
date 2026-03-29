@@ -159,9 +159,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== CTA Button ===== */
 .cta {
     text-align: center;
-    margin: 50px 0;
-}
-.cta{
+    margin: 50px 20px;
     background-color: gold;
     color: #0a2e6f;
     padding: 15px 40px;
