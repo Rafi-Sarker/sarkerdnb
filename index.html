@@ -5,83 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarker Design & Build - Dashboard</title>
 <link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
 </head>
+
 <body>
 
 <div id="dashboardPage">
-  <!-- Header -->
+
+  <!-- ===== HEADER (UNCHANGED STRUCTURE) ===== -->
   <div class="header">
-  <div class="header-inner">
-    
-    <h2 class="logo">Sarker Design & Build</h2>
+    <div class="header-inner">
+      
+      <!-- Brand (NEW but SAFE) -->
+      <div class="brand">
+        <h2 class="logo">
+          <img src="logo.png" alt="logo" class="logo-img">
+          Sarker Design & Build
+        </h2>
+        <p class="motto">Building Trust Through Excellence</p>
+      </div>
 
-    <div class="nav">
-      <a href="index.html">Dashboard</a>
-      <a href="projects.html">Projects</a>
-      <a href="profile.html">Profile</a>
+      <!-- Nav (UNCHANGED) -->
+      <div class="nav">
+        <a href="index.html">Dashboard</a>
+        <a href="projects.html">Projects</a>
+        <a href="profile.html">Profile</a>
+      </div>
+
+      <!-- Actions (UNCHANGED) -->
+      <div class="header-actions">
+        <input type="text" placeholder="Search..." class="search">
+        <a href="user.html" class="login-btn">Login</a>
+      </div>
+
     </div>
-
-    <div class="header-actions">
-      <input type="text" placeholder="Search..." class="search">
-      <a href="user.html" class="login-btn">Login</a>
-    </div>
-
   </div>
-</div>
 
-  <!-- Main Container -->
+  <!-- ===== MAIN ===== -->
   <div class="container">
     <div class="projects">
-      <!-- Prime Tower Card -->
+
+      <!-- Project 1 -->
       <div class="project-card">
-        <img src="37.jpg" alt="Prime Tower" class="project-image">
+        <img src="37.jpg" class="project-image">
         <div class="project-content">
           <h3 class="project-title">Prime Tower</h3>
           <p class="project-description">
-            A luxury residential building with state-of-the-art facilities and sustainable construction methods.
+            A luxury residential building with modern and sustainable construction.
           </p>
+
           <div class="project-details">
             <p><strong>Location:</strong> Downtown</p>
             <p><strong>Start Date:</strong> Jan 2026</p>
-            <p><strong>Current Update:</strong> Foundation completed</p>
+            <p><strong>Status:</strong> Foundation completed</p>
           </div>
+
           <div class="progress-bar">
             <div class="progress" style="width:35%">35%</div>
           </div>
+
           <a href="PrimeTower.html" class="cta">Details</a>
         </div>
       </div>
 
-      <!-- Project Beta Card -->
+      <!-- Project 2 -->
       <div class="project-card">
-        <img src="3.jpg" alt="Project Beta" class="project-image">
+        <img src="3.jpg" class="project-image">
         <div class="project-content">
           <h3 class="project-title">Project Beta</h3>
           <p class="project-description">
-            Riverside commercial complex designed for premium business and retail spaces with modern architecture.
+            Premium riverside commercial complex for business and retail.
           </p>
+
           <div class="project-details">
             <p><strong>Location:</strong> Riverside</p>
             <p><strong>Start Date:</strong> Mar 2026</p>
-            <p><strong>Current Update:</strong> Planning phase</p>
+            <p><strong>Status:</strong> Planning phase</p>
           </div>
+
           <div class="progress-bar">
             <div class="progress" style="width:10%">10%</div>
           </div>
-          <div>
-            <a href="#" class="cta">Details</a>
-          </div>
+
+          <a href="#" class="cta">Details</a>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- ===== FOOTER ===== -->
   <div class="footer">
     © 2026 Sarker Design & Build | Civil Construction & Consultancy
   </div>
+
 </div>
 
 </body>
