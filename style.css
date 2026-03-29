@@ -10,7 +10,6 @@ a {text-decoration: none; color: inherit;}
 .container {max-width: 1200px; margin: auto; padding: 20px;}
 
 /* ===== Header ===== */
-/* ===== HEADER ===== */
 .header {
     position: sticky;
     top: 0;
@@ -285,4 +284,85 @@ h1, h2, h3, h4, h5, h6 {
     .nav {flex-direction: column;}
     .projects {grid-template-columns: 1fr;}
     .dashboard {grid-template-columns: 1fr;}
+}
+
+/* ===== PREMIUM HEADER ADDITIONS ===== */
+/* Place this at the end so nothing else is affected */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeInDown 1s ease forwards;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+.logo-image:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.logo-text .logo {
+    margin: 0;
+    color: gold;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+.logo-text .motto {
+    font-size: 0.85em;
+    color: #fff;
+    font-style: italic;
+    margin: 2px 0 0 0;
+}
+
+.header {
+    background: linear-gradient(135deg,#0a2e6f,#123a8c);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    padding: 12px 30px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+
+.nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px gold, 0 0 12px gold;
+}
+
+@keyframes fadeInDown {
+    0% {opacity:0; transform: translateY(-20px);}
+    100% {opacity:1; transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@keyframes gradientMove {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
 }
