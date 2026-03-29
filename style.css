@@ -33,6 +33,11 @@ a {text-decoration: none; color: inherit;}
 }
 .nav a:hover {color: #fff;}
 
+/* ===== Fix for headings under sticky nav ===== */
+h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 90px; /* sticky header height + padding */
+}
+
 /* ===== Dashboard Cards ===== */
 .dashboard {
     display: grid;
@@ -102,6 +107,8 @@ a {text-decoration: none; color: inherit;}
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
 }
 .login-box input {
     width: 100%;
