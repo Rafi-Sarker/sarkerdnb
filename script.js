@@ -41,8 +41,8 @@ function loadDashboard(){
       <div class="project-card">
         <div class="project-content">
           <h3>${inv.project}</h3>
-          <p><b>Total Value:</b> ৳{inv.amount}</p>
-          <p><b>Invested:</b> ৳{inv.roi}</p>
+          <p><b>Total Value:</b> ৳${inv.amount}</p>
+          <p><b>Invested:</b> ৳${inv.roi}</p>
           <div class="progress-bar">
             <div class="progress" style="width:${inv.progress}%">${inv.progress}%</div>
           </div>
