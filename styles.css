@@ -1,102 +1,60 @@
-/* Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ===== Base ===== */
+body {margin:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f5f7fb;color:#1a1a1a;}
+a {text-decoration:none;}
+.container {max-width:1200px;margin:auto;padding:20px;}
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Header */
-header {
-  background-color: #4caf50; /* Avocado green */
-  padding: 20px 0;
-  color: white;
-}
-
-header h1 {
-  font-weight: 700;
-  font-size: 1.8rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin-top: 8px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.3s ease;
-}
-
-nav ul li a:hover {
-  opacity: 0.8;
-}
-
-/* Main */
-main h2 {
-  margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #4caf50;
+/* ===== Header (Second Page Style) ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg,#0a2e6f,#123a8c);
+  color: gold;
+  padding: 20px;
   text-align: center;
 }
+.nav {display:flex;justify-content:center;gap:20px;margin-top:10px;}
+.nav a {color:gold;font-weight:bold;}
+.nav a:hover {color:#fff;}
 
-/* Products Grid */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
+/* ===== Dashboard Cards ===== */
+.dashboard {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px;}
+.card {background:white;padding:20px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
 
-.product-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
+/* ===== Projects ===== */
+.projects {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.project-card {background:white;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease, box-shadow 0.3s ease;}
+.project-card:hover {transform:translateY(-8px) scale(1.02);box-shadow:0 12px 25px rgba(0,0,0,0.2);}
+.project-content {padding:15px;}
+.project-image {width:100%;height:180px;object-fit:cover;}
+.project-title {font-size:20px;color:#0a2e6f;margin:0 0 10px;}
+.project-description {font-size:14px;color:#555;margin:0 0 10px;}
 
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
-}
+/* ===== Progress Bar ===== */
+.progress-bar {background:#ddd;height:20px;border-radius:20px;overflow:hidden;margin:10px 0;}
+.progress {height:100%;background:#0a2e6f;color:gold;text-align:center;font-size:12px;line-height:20px;}
 
-.product-card img {
-  max-width: 100%;
-  border-radius: 6px;
-  margin-bottom: 12px;
-}
+/* ===== Login ===== */
+.login {display:flex;justify-content:center;align-items:center;height:100vh;}
+.login-box {background:white;padding:30px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.login-box input {width:100%;padding:10px;margin:10px 0;}
+.login-box button {width:100%;padding:10px;margin-top:10px;background:#0a2e6f;color:gold;border:none;border-radius:8px;font-weight:bold;cursor:pointer;}
+.login-box button:hover {background:#123a8c;}
 
-.product-card h3 {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #333;
-}
+/* ===== Unit Details ===== */
+.unit-details {background-color:#0a2e6f;color:gold;padding:20px;border-radius:12px;}
+.unit-details h3 {margin-top:0;}
 
-/* Footer */
-footer {
-  background-color: #2e7d32;
-  color: white;
-  padding: 15px 0;
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9rem;
-}
+/* ===== Gallery ===== */
+.images {display:flex;flex-wrap:wrap;gap:20px;margin-bottom:40px;}
+.images img {flex:1 1 300px;border-radius:12px;object-fit:cover;height:200px;}
+
+/* ===== CTA Button ===== */
+.cta {text-align:center;margin:50px 0;}
+.cta a {background-color:gold;color:#0a2e6f;padding:15px 40px;font-size:1.2em;border-radius:8px;font-weight:bold;transition:0.3s;}
+.cta a:hover {background-color:#e6c200;}
+
+/* ===== Tables ===== */
+.history table {width:100%;border-collapse:collapse;background:white;margin-top:20px;}
+.history th,.history td {padding:10px;border-bottom:1px solid #eee;text-align:left;}
+.footer {text-align:center;padding:20px 0;background:#0a2e6f;color:gold;margin-top:50px;}
