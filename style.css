@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin: 50px 0;
 }
-.cta a {
+.cta{
     background-color: gold;
     color: #0a2e6f;
     padding: 15px 40px;
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     transition: background 0.3s;
 }
-.cta a:hover {background-color: #e6c200;}
+.cta:hover {background-color: #e6c200;}
 
 /* ===== Tables ===== */
 .history table {
