@@ -10,32 +10,102 @@ a {text-decoration: none; color: inherit;}
 .container {max-width: 1200px; margin: auto; padding: 20px;}
 
 /* ===== Header ===== */
+/* ===== HEADER ===== */
 .header {
     position: sticky;
     top: 0;
     z-index: 1000;
     background: linear-gradient(135deg,#0a2e6f,#123a8c);
-    color: gold;
-    padding: 20px;
-    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    padding: 10px 30px;
 }
-.header h1 {margin: 0;}
+
+/* inner layout */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* logo */
+.logo {
+    margin: 0;
+    color: gold;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+}
+
+/* nav */
 .nav {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 10px;
+    gap: 25px;
 }
+
 .nav a {
     color: gold;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    transition: all 0.3s ease;
 }
-.nav a:hover {color: #fff;}
 
-/* ===== Fix for headings under sticky nav ===== */
+/* underline animation */
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: gold;
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.nav a:hover {
+    color: #fff;
+}
+
+/* right side actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* search */
+.search {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 0.9em;
+}
+
+/* login button */
+.login-btn {
+    background: gold;
+    color: #0a2e6f;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #e6c200;
+    transform: translateY(-2px);
+}
+
+/* ===== Fix scroll offset ===== */
 h1, h2, h3, h4, h5, h6 {
-    scroll-margin-top: 90px; /* sticky header height + padding */
+    scroll-margin-top: 100px;
 }
 
 /* ===== Dashboard Cards ===== */
