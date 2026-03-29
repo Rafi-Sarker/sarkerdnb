@@ -158,15 +158,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== CTA Button ===== */
 .cta {
-    text-align: center;
-    margin: 50px 20px;
+    display: inline-block;
     background-color: gold;
     color: #0a2e6f;
     padding: 15px 40px;
     font-size: 1.2em;
     border-radius: 8px;
     font-weight: bold;
+    text-decoration: none;
     transition: background 0.3s;
+    margin-top: 20px;
+}
+.cta:hover {
+    background-color: #e6c200;
 }
 .cta:hover {background-color: #e6c200;}
 
