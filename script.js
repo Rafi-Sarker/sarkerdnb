@@ -11,7 +11,7 @@ const investors = [
   {
     username:"rifat",
     password:"1234",
-    investments:[{project:"Project Bosila",amount:600000,roi:50,progress:1}]
+    investments:[{project:"Prime Tower",amount:600000,roi:5000,progress:1}]
   }
 ];
 
@@ -41,8 +41,8 @@ function loadDashboard(){
       <div class="project-card">
         <div class="project-content">
           <h3>${inv.project}</h3>
-          <p><b>Invested:</b> ৳${inv.amount}</p>
-          <p><b>ROI:</b> ${inv.roi}%</p>
+          <p><b>Total Value:</b> ৳{inv.amount}</p>
+          <p><b>Invested:</b> ৳{inv.roi}</p>
           <div class="progress-bar">
             <div class="progress" style="width:${inv.progress}%">${inv.progress}%</div>
           </div>
