@@ -2,7 +2,7 @@
 const investors = [
   {
     username: "rafi",
-    password: "1234",
+    password: "1",
     investments: [
       {project:"Project Alpha",amount:500000,roi:0,progress:35},
       {project:"Project Alpha",amount:200000,roi:0,progress:10}
@@ -10,10 +10,22 @@ const investors = [
 
     // 👇 USER-SPECIFIC NOTICES (YOU CONTROL HERE)
     notices: [
-      {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01"},
+      {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01", pin:},
       {title:"File 1 Approved", message:"Your file is approved", date:"2024-01-02"},
       {title:"File 2 Approved", message:"Your file is approved. This is another one!", date:"2025-04-02"},
       {title:"File 3 Approved", message:"Your file is approved. We are happy to doing business with you. your invesment here proves your courange and intelect.", date:"2026-04-02"},
+      {
+        title:"New Project Launch",
+        message:"Coming soon",
+        date:"2026-04-01",
+        pin:true
+        },
+      {
+        title:"Old Notice",
+        message:"Will disappear",
+        date:"2026-03-01",
+        expiry:"2026-03-30"
+        },
     ]
   },
 
@@ -44,32 +56,52 @@ const globalNotices = [
 function loadNotices(){
   let notices = [];
 
-  // 1. Always add global notices
+  // 1. Global
   notices = notices.concat(globalNotices);
 
-  // 2. Add user notices ONLY if logged in
+  // 2. User (if logged in)
   if(currentUser && currentUser.notices){
     notices = notices.concat(currentUser.notices);
   }
 
-  // 3. Render
+  // 3. Remove expired
+  const today = new Date();
+  notices = notices.filter(n=>{
+    if(!n.expiry) return true;
+    return new Date(n.expiry) >= today;
+  });
+
+  // 4. Sort → pinned first
+  notices.sort((a,b)=>(b.pin===true)-(a.pin===true));
+
+  // 5. Unread system (simple)
+  let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
+
   let html = "";
-  notices.forEach((n, i)=>{
+  let unreadCount = 0;
+
+  notices.forEach((n,i)=>{
+    let isRead = read.includes(n.title);
+
+    if(!isRead) unreadCount++;
+
     html += `
-      <div class="notice-item" onclick="openNotice(${i})">
-        <h4>${n.title}</h4>
+      <div class="notice-item ${!isRead ? 'unread':''}" onclick="openNotice(${i})">
+        <h4>${n.title} ${n.pin ? '📌':''}</h4>
         <small>${n.date}</small>
       </div>
     `;
   });
 
-   // 👇 PLACE IT HERE
+  // empty state
   if(notices.length === 0){
     html = "<p style='font-size:13px;color:#777;'>No updates</p>";
   }
 
-
   document.getElementById('noticeList').innerHTML = html;
+
+  // badge
+  document.getElementById('noticeCount').innerText = unreadCount;
 
   window.noticeData = notices;
 }
@@ -82,9 +114,19 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function openNotice(i){
   let n = window.noticeData[i];
+
   document.getElementById('noticeTitle').innerText = n.title;
   document.getElementById('noticeMessage').innerText = n.message;
   document.getElementById('noticeModal').style.display = 'flex';
+
+  // mark as read
+  let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
+  if(!read.includes(n.title)){
+    read.push(n.title);
+    localStorage.setItem("readNotices", JSON.stringify(read));
+  }
+
+  loadNotices(); // refresh UI
 }
 
 function closeNotice(){
