@@ -10,7 +10,7 @@ const investors = [
 
     // 👇 USER-SPECIFIC NOTICES (YOU CONTROL HERE)
     notices: [
-      {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01", pin:},
+      {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01", pin: true},
       {title:"File 1 Approved", message:"Your file is approved", date:"2024-01-02"},
       {title:"File 2 Approved", message:"Your file is approved. This is another one!", date:"2025-04-02"},
       {title:"File 3 Approved", message:"Your file is approved. We are happy to doing business with you. your invesment here proves your courange and intelect.", date:"2026-04-02"},
