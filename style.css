@@ -349,9 +349,9 @@ h1, h2, h3, h4, h5, h6 {
 .notice-card {
   position: fixed;
   right: 20px;
-  top: 110px; /* 👈 pushes below header */
+  top: 130px; /* 👈 pushes below header */
   width: 260px;
-  max-height: 320px; /* important for scroll */
+  max-height: 520px; /* important for scroll */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
