@@ -387,6 +387,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  margin-bottom: 8px; /* <-- minimum gap between notices */
 }
 
 .notice-item:hover {
@@ -397,8 +398,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ==== Updated Unread Style ==== */
 .notice-item.unread {
   font-weight: bold;
-  border-left: 4px solid #0a2e6f; /* subtle left bar for unread */
-  background: #fdfdfd; /* very light highlight */
+  border-left: 4px solid #0a2e6f;
+  background: #fdfdfd;
 }
 
 /* badge */
