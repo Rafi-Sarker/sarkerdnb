@@ -11,7 +11,9 @@ const investors = [
     // 👇 USER-SPECIFIC NOTICES (YOU CONTROL HERE)
     notices: [
       {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01"},
-      {title:"File Approved", message:"Your file is approved", date:"2026-04-02"}
+      {title:"File 1 Approved", message:"Your file is approved", date:"2024-01-02"},
+      {title:"File 2 Approved", message:"Your file is approved. This is another one!", date:"2025-04-02"},
+      {title:"File 3 Approved", message:"Your file is approved. We are happy to doing business with you. your invesment here proves your courange and intelect.", date:"2026-04-02"},
     ]
   },
 
@@ -30,7 +32,8 @@ const investors = [
 
 // 👇 GLOBAL NOTICES (FOR ALL USERS)
 const globalNotices = [
-  {title:"New Project Launch", message:"New project coming soon", date:"2026-04-01"}
+  {title:"New Project Launch", message:"New project coming soon", date:"2026-04-01"},
+  {title:"Prime Tomer Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
 ];
 
 function loadNotices(){
