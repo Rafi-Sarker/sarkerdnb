@@ -7,35 +7,21 @@ const investors = [
       {project:"Project Alpha",amount:500000,roi:0,progress:35},
       {project:"Project Alpha",amount:200000,roi:0,progress:10}
     ],
-
-    // 👇 USER-SPECIFIC NOTICES (YOU CONTROL HERE)
     notices: [
       {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01", pin: true},
       {title:"File 1 Approved", message:"Your file is approved", date:"2024-01-02"},
       {title:"File 2 Approved", message:"Your file is approved. This is another one!", date:"2025-04-02"},
       {title:"File 3 Approved", message:"Your file is approved. We are happy to doing business with you. your invesment here proves your courange and intelect.", date:"2026-04-02"},
-      {
-        title:"New Project Launch",
-        message:"Coming soon",
-        date:"2026-04-01",
-        pin:true
-        },
-      {
-        title:"Old Notice",
-        message:"Will disappear",
-        date:"2026-03-01",
-        expiry:"2026-03-30"
-        },
+      {title:"New Project Launch", message:"Coming soon", date:"2026-04-01", pin:true},
+      {title:"Old Notice", message:"Will disappear", date:"2026-03-01", expiry:"2026-03-30"}
     ]
   },
-
   {
     username:"rifat",
     password:"1234",
     investments:[
       {project:"Prime Tower",amount:600000,roi:5000,progress:1}
     ],
-
     notices: [
       {title:"ROI Update", message:"ROI updated", date:"2026-04-01"}
     ]
@@ -52,6 +38,8 @@ const globalNotices = [
   {title:"Prime Tomer 5 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
   {title:"Prime Tomer 6 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
 ];
+
+let currentUser = null;
 
 function loadNotices(){
   let notices = [];
@@ -74,7 +62,10 @@ function loadNotices(){
   // 4. Sort → pinned first
   notices.sort((a,b)=>(b.pin===true)-(a.pin===true));
 
-  // 5. Unread system (simple)
+  // Save globally first
+  window.noticeData = notices;
+
+  // 5. Unread system
   let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
 
   let html = "";
@@ -82,7 +73,6 @@ function loadNotices(){
 
   notices.forEach((n,i)=>{
     let isRead = read.includes(n.title);
-
     if(!isRead) unreadCount++;
 
     html += `
@@ -93,17 +83,15 @@ function loadNotices(){
     `;
   });
 
-  // empty state
   if(notices.length === 0){
     html = "<p style='font-size:13px;color:#777;'>No updates</p>";
   }
 
   document.getElementById('noticeList').innerHTML = html;
 
-  // badge
-  document.getElementById('noticeCount').innerText = unreadCount;
-
-  window.noticeData = notices;
+  // badge (only if exists)
+  const noticeCountEl = document.getElementById('noticeCount');
+  if(noticeCountEl) noticeCountEl.innerText = unreadCount;
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -133,8 +121,6 @@ function closeNotice(){
   document.getElementById('noticeModal').style.display = 'none';
 }
 
-let currentUser = null;
-
 // ===== Login & Logout =====
 function login(){
   let u = document.getElementById('username').value;
@@ -146,7 +132,8 @@ function login(){
     loadDashboard();
   } else alert('Wrong login');
 }
-function logout(){location.reload();}
+
+function logout(){ location.reload(); }
 
 // ===== Dashboard Load =====
 function loadDashboard(){
