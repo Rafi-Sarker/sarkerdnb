@@ -287,8 +287,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ===== PREMIUM HEADER ADDITIONS ===== */
-/* Place this at the end so nothing else is affected */
-
 .logo-container {
     display: flex;
     align-items: center;
@@ -349,9 +347,9 @@ h1, h2, h3, h4, h5, h6 {
 .notice-card {
   position: fixed;
   right: 20px;
-  top: 140px; /* 👈 pushes below header */
+  top: 140px;
   width: 260px;
-  max-height: 520px; /* important for scroll */
+  max-height: 520px;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -396,10 +394,11 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(5px);
 }
 
-/* unread highlight */
+/* ==== Updated Unread Style ==== */
 .notice-item.unread {
-  background: #eef3ff;
-  font-weight: 600;
+  font-weight: bold;
+  border-left: 4px solid #0a2e6f; /* subtle left bar for unread */
+  background: #fdfdfd; /* very light highlight */
 }
 
 /* badge */
@@ -460,11 +459,6 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes fadeInDown {
     0% {opacity:0; transform: translateY(-20px);}
     100% {opacity:1; transform: translateY(0);}
-}
-
-@keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
 }
 
 @keyframes gradientMove {
