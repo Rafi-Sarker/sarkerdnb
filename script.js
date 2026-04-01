@@ -44,15 +44,15 @@ const globalNotices = [
 function loadNotices(){
   let notices = [];
 
-  // 1. Add global notices
+  // 1. Always add global notices
   notices = notices.concat(globalNotices);
 
-  // 2. Add current user notices
-  if(currentUser.notices){
+  // 2. Add user notices ONLY if logged in
+  if(currentUser && currentUser.notices){
     notices = notices.concat(currentUser.notices);
   }
 
-  // 3. Show in UI
+  // 3. Render
   let html = "";
   notices.forEach((n, i)=>{
     html += `
@@ -65,7 +65,6 @@ function loadNotices(){
 
   document.getElementById('noticeList').innerHTML = html;
 
-  // store for click
   window.noticeData = notices;
 }
 
