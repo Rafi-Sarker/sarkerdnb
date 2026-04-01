@@ -33,7 +33,12 @@ const investors = [
 // 👇 GLOBAL NOTICES (FOR ALL USERS)
 const globalNotices = [
   {title:"New Project Launch", message:"New project coming soon", date:"2026-04-01"},
-  {title:"Prime Tomer Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 1 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 2 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 3 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 4 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 5 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
+  {title:"Prime Tomer 6 Registration.", message:"Next Monday we are going to register all the shares to Prime Tower. Please join there in time get you asset properly", date:"2026-04-01"},
 ];
 
 function loadNotices(){
