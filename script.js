@@ -63,10 +63,22 @@ function loadNotices(){
     `;
   });
 
+   // 👇 PLACE IT HERE
+  if(notices.length === 0){
+    html = "<p style='font-size:13px;color:#777;'>No updates</p>";
+  }
+
+
   document.getElementById('noticeList').innerHTML = html;
 
   window.noticeData = notices;
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  if(document.getElementById("noticeList")){
+    loadNotices();
+  }
+});
 
 function openNotice(i){
   let n = window.noticeData[i];
