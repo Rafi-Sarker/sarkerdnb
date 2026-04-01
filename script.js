@@ -6,14 +6,71 @@ const investors = [
     investments: [
       {project:"Project Alpha",amount:500000,roi:0,progress:35},
       {project:"Project Alpha",amount:200000,roi:0,progress:10}
+    ],
+
+    // 👇 USER-SPECIFIC NOTICES (YOU CONTROL HERE)
+    notices: [
+      {title:"Payment Reminder", message:"Pay within 5 days", date:"2026-04-01"},
+      {title:"File Approved", message:"Your file is approved", date:"2026-04-02"}
     ]
   },
+
   {
     username:"rifat",
     password:"1234",
-    investments:[{project:"Prime Tower",amount:600000,roi:5000,progress:1}]
+    investments:[
+      {project:"Prime Tower",amount:600000,roi:5000,progress:1}
+    ],
+
+    notices: [
+      {title:"ROI Update", message:"ROI updated", date:"2026-04-01"}
+    ]
   }
 ];
+
+// 👇 GLOBAL NOTICES (FOR ALL USERS)
+const globalNotices = [
+  {title:"New Project Launch", message:"New project coming soon", date:"2026-04-01"}
+];
+
+function loadNotices(){
+  let notices = [];
+
+  // 1. Add global notices
+  notices = notices.concat(globalNotices);
+
+  // 2. Add current user notices
+  if(currentUser.notices){
+    notices = notices.concat(currentUser.notices);
+  }
+
+  // 3. Show in UI
+  let html = "";
+  notices.forEach((n, i)=>{
+    html += `
+      <div class="notice-item" onclick="openNotice(${i})">
+        <h4>${n.title}</h4>
+        <small>${n.date}</small>
+      </div>
+    `;
+  });
+
+  document.getElementById('noticeList').innerHTML = html;
+
+  // store for click
+  window.noticeData = notices;
+}
+
+function openNotice(i){
+  let n = window.noticeData[i];
+  document.getElementById('noticeTitle').innerText = n.title;
+  document.getElementById('noticeMessage').innerText = n.message;
+  document.getElementById('noticeModal').style.display = 'flex';
+}
+
+function closeNotice(){
+  document.getElementById('noticeModal').style.display = 'none';
+}
 
 let currentUser = null;
 
@@ -32,6 +89,7 @@ function logout(){location.reload();}
 
 // ===== Dashboard Load =====
 function loadDashboard(){
+  loadNotices();
   let total=0, roiSum=0;
   let projectHTML="", historyHTML="";
   currentUser.investments.forEach(inv=>{
