@@ -345,6 +345,77 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 0 8px gold, 0 0 12px gold;
 }
 
+/* Floating Notice */
+.notice-card {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 260px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 15px;
+  animation: slideIn 0.5s ease;
+  z-index: 1000;
+}
+
+.notice-card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.notice-item {
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.notice-item:hover {
+  background: #f1f5ff;
+  transform: translateX(5px);
+}
+
+@keyframes slideIn {
+  from {transform: translateY(50px); opacity:0;}
+  to {transform: translateY(0); opacity:1;}
+}
+
+/* Modal */
+.notice-modal {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.4);
+}
+
+.notice-box {
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  width:300px;
+  text-align:center;
+  animation: fadeIn 0.3s ease;
+}
+
+.notice-box button {
+  margin-top:15px;
+  padding:8px 15px;
+  border:none;
+  background:#4a6cf7;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: scale(0.9);}
+  to {opacity:1; transform: scale(1);}
+}
+
 @keyframes fadeInDown {
     0% {opacity:0; transform: translateY(-20px);}
     100% {opacity:1; transform: translateY(0);}
