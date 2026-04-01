@@ -349,16 +349,18 @@ h1, h2, h3, h4, h5, h6 {
 .notice-card {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  top: 110px; /* 👈 pushes below header */
   width: 260px;
+  max-height: 320px; /* important for scroll */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   padding: 15px;
-  animation: slideIn 0.5s ease;
-  z-index: 1000;
+  animation: slideInTop 0.5s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
 }
-
 .notice-card h3 {
   margin: 0 0 10px;
   font-size: 16px;
