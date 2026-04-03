@@ -3,94 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarker Design & Build - Dashboard</title>
+<title>Sarker Design & Build</title>
+
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 </head>
+
 <body>
 
-<div id="dashboardPage">
-  <!-- Header -->
-  <div class="header">
-    <div class="header-inner">
-      
-      <!-- Logo + Motto -->
-      <div class="logo-container">
-        <img src="39.png" alt="Sarker Logo" class="logo-image">
-        <div class="logo-text">
-          <h2 class="logo">Sarker Design & Build</h2>
-          <p class="motto">Building Trust Through Excellence</p>
-        </div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+
+    <div class="logo-container">
+      <img src="39.png" class="logo-image">
+      <div class="logo-text">
+        <h2 class="logo">Sarker Design & Build</h2>
+        <p class="motto">Building Trust Through Excellence</p>
       </div>
-  
-      <!-- Navigation -->
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="nav">
-        <a href="index.html">Dashboard</a>
-        <a href="projects.html">Projects</a>
-        <a href="profile.html">Profile</a>
-        <a href="user.html">Login</a>
-      </div>
-  
     </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav">
+      <a href="#">Dashboard</a>
+      <a href="#">Projects</a>
+      <a href="#">Profile</a>
+      <a href="#">Login</a>
+    </div>
+
+  </div>
 </div>
 
-  <!-- Main Container -->
-  <div class="container">
-    <div class="projects">
-      
-      <!-- Prime Tower Card -->
-      <div class="project-card">
-        <img src="37.jpg" alt="Prime Tower" class="project-image">
-        <div class="project-content">
-          <h3 class="project-title">Prime Tower</h3>
-          <p class="project-description">
-            A luxury residential building with state-of-the-art facilities and sustainable construction methods.
-          </p>
-          <div class="project-details">
-            <p><strong>Location:</strong> Downtown</p>
-            <p><strong>Start Date:</strong> Jan 2026</p>
-            <p><strong>Current Update:</strong> Foundation completed</p>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width:35%">35%</div>
-          </div>
-          <a href="PrimeTower.html" class="cta">Details</a>
-        </div>
-      </div>
+<!-- CONTENT -->
+<div class="container">
 
-      <!-- Project Beta Card -->
-      <div class="project-card">
-        <img src="3.jpg" alt="Project Beta" class="project-image">
-        <div class="project-content">
-          <h3 class="project-title">Project Beta</h3>
-          <p class="project-description">
-            Riverside commercial complex designed for premium business and retail spaces with modern architecture.
-          </p>
-          <div class="project-details">
-            <p><strong>Location:</strong> Riverside</p>
-            <p><strong>Start Date:</strong> Mar 2026</p>
-            <p><strong>Current Update:</strong> Planning phase</p>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width:10%">10%</div>
-          </div>
-          <div>
-            <a href="#" class="cta">Details</a>
-          </div>
+  <div class="projects">
+
+    <div class="project-card">
+      <img src="37.jpg" class="project-image">
+      <div class="project-content">
+        <h3 class="project-title">Prime Tower</h3>
+        <p class="project-description">Luxury residential building</p>
+
+        <div class="progress-bar">
+          <div class="progress" style="width:35%">35%</div>
         </div>
+
+        <a href="#" class="cta">Details</a>
       </div>
     </div>
-    <!-- Floating Notice Card -->
+
+  </div>
+
+</div>
+
+<!-- NOTICE -->
 <div class="notice-card">
-  <h3>
-  Updates 
-  <span id="noticeCount" class="notice-badge">0</span>
-  </h3>
+  <h3>Updates <span id="noticeCount">0</span></h3>
   <div id="noticeList"></div>
 </div>
 
-<!-- Popup Modal -->
+<!-- MODAL -->
 <div id="noticeModal" class="notice-modal">
   <div class="notice-box">
     <h2 id="noticeTitle"></h2>
@@ -98,12 +72,10 @@
     <button onclick="closeNotice()">Close</button>
   </div>
 </div>
-  </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    © 2026 Sarker Design & Build | Civil Construction & Consultancy
-  </div>
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Sarker Design & Build
 </div>
 
 </body>
