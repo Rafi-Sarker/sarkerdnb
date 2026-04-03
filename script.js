@@ -162,3 +162,7 @@ function loadDashboard(){
   document.getElementById('projectList').innerHTML=projectHTML;
   document.getElementById('historyTable').innerHTML=historyHTML;
 }
+
+function toggleMenu() {
+    document.querySelector('.nav').classList.toggle('active');
+}
