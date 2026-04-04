@@ -397,19 +397,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile */
 @media (max-width: 768px) {
-    /* Header and nav fix */
-    .header-inner { flex-direction: column; align-items: center; gap:10px; }
-    .nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top:5px; }
-    .nav a { font-size: 0.9em; padding: 4px 6px; }
-    .header-actions { flex-direction: row; justify-content: center; gap: 10px; width:100%; }
-
-    /* Content adjustments */
+    .header-inner { flex-direction: column; align-items: center; }
+    .nav { flex-direction: column; align-items: center; gap: 10px; }
+    .header-actions { flex-direction: column; align-items: center; gap: 10px; }
     .search { width: 100%; max-width: 250px; }
     .card { padding: 15px; }
     .project-image { height: 160px; }
     .images img { height: 180px; }
 
-    /* Notice card flows below content instead of overlaying */
+    /* Notice card below content, avoids footer overlap */
     .notice-card {
         position: relative;
         bottom: auto;
@@ -417,6 +413,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         max-width: none;
         margin-top: 20px;
+        margin-bottom: 30px; /* spacing from footer */
         transform: none;
         max-height: none;
     }
@@ -430,5 +427,10 @@ h1, h2, h3, h4, h5, h6 {
     .project-description { font-size: 13px; }
     .login { height: auto; padding: 20px; }
     .login-box { padding: 20px; }
-    .notice-card { width: 95%; left: 50%; transform: translateX(-50%); }
+    .notice-card {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 30px; /* spacing from footer */
+    }
 }
