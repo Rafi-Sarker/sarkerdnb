@@ -297,8 +297,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Floating Notice ===== */
 .notice-card {
     position: relative;
-    right: 20px;
-    top: 140px;
+    right: -20px;
+    top: -140px;
     width: 260px;
     max-height: 520px;
     background: #fff;
