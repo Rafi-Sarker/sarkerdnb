@@ -384,7 +384,7 @@ h1, h2, h3, h4, h5, h6 {
     .header-inner { gap: 10px; }
     .nav { justify-content: center; width: 100%; }
     .header-actions { width: 100%; justify-content: center; }
-    .notice-card { width: 220px; right: 10px; }
+    .notice-card { width: 220px; right: 10px; top: 10px; }
 }
 
 /* Mobile */
