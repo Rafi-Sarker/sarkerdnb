@@ -115,6 +115,7 @@ function loadDashboard() {
   loadNotices();
 
   let totalInvested = 0;
+  let totalValue = 0;
   let projectHTML = "", historyHTML = "";
 
   currentUser.investments.forEach(inv => {
