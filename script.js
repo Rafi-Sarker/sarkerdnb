@@ -16,7 +16,7 @@ const investors = [
   },
   {
     username: "rifat",
-    password: "1234",
+    password: "1",
     profile: [{ name: "Tanvir Rehman Rifat", img: "rifat.jpg" }],
     investments: [
       { project: "Prime Tower", total: 600000, invested: 5000 }
