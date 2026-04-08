@@ -159,7 +159,7 @@ function loadDashboard(){
       </div>`;
     historyHTML+=`<tr><td>${inv.project}</td><td>৳${inv.amount}</td><td>${inv.roi}%</td></tr>`;
   });
-  document.getElementById('user').innerText=currentUser.profile.name;
+  document.getElementById('user').innerText=currentUser.profile[0].name;
   document.getElementById('investment').innerText='৳'+total;
   document.getElementById('roi').innerText=(roiSum/currentUser.investments.length).toFixed(2)+'%';
   document.getElementById('totalProjects').innerText=currentUser.investments.length;
