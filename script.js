@@ -39,7 +39,7 @@ const investors = [
           { amount: 5000, date: "2026-04-05" },
           { amount: 4000, date: "2026-06-12" },
           { amount: 51000, date: "2026-07-02" },
-          { amount: -, date: "2026-06-12" }
+          { amount: 6000, date: "2026-09-12" }
         ] 
       }
     ],
