@@ -299,7 +299,7 @@ h1, h2, h3, h4, h5, h6 {
 .notice-card {
     position: fixed;
     right: 20px;
-    top: 140px;
+    top: 120px;
     width: 260px;
     max-height: 520px;
     background: #fff;
