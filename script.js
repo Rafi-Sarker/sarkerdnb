@@ -120,6 +120,7 @@ function loadDashboard() {
   currentUser.investments.forEach(inv => {
     const progress = ((inv.invested / inv.total) * 100).toFixed(2);
 
+    totalValue += inv.total;
     totalInvested += inv.invested;
 
     projectHTML += `<div class="project-card">
@@ -141,6 +142,7 @@ function loadDashboard() {
   });
 
   document.getElementById('user').innerText = currentUser.profile[0].name;
+  document.getElementById('investment').innerText = '৳' + totalValue;
   document.getElementById('invested').innerText = '৳' + totalInvested;
   document.getElementById('totalProjects').innerText = currentUser.investments.length;
   document.getElementById('projectList').innerHTML = projectHTML;
