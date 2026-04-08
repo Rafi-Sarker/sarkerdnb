@@ -17,14 +17,13 @@ const investors = [
   {
     username: "rifat",
     password: "1234",
-    profile: [{ name: "Rifat Hossain", img: "rifat.jpg" }],
+    profile: [{ name: "Tanvir Rehman Rifat", img: "rifat.jpg" }],
     investments: [
-      { project: "Prime Tower", total: 600000, invested: 100000 }
+      { project: "Prime Tower", total: 600000, invested: 5000 }
     ],
     notices: [
-      { title: "Payment Reminder 1", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "2026-03-30" },
-      { title: "Payment Reminder 2", message: "Pay within 5 days", date: "2026-04-01", pin: false, expiry: "2027-03-30" },
-      { title: "Payment Reminder 3", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "" }
+      { title: "Enrollment Confirmed", message: "Congratulations! Your shares in Project Alpha have been successfully registered. Welcome aboard!", date: "2026-03-06", pin: false, expiry: "" },
+      { title: "Investment Update", message: "We have received your payment of ৳5,000 for Project Alpha. Thank you!", date: "2026-03-06", pin: false, expiry: "" },
     ]
   }
 ];
