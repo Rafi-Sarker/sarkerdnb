@@ -9,7 +9,7 @@ const investors = [
       { project: "Project Alpha", total: 200000, invested: 20000 }
     ],
     notices: [
-      { title: "Payment Reminder 1", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "2026-03-30" },
+      { title: "Payment Reminder 1", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "2026-04-30" },
       { title: "Payment Reminder 2", message: "Pay within 5 days", date: "2026-04-01", pin: false, expiry: "2027-03-30" },
       { title: "Payment Reminder 3", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "" }
     ]
