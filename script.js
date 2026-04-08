@@ -5,8 +5,21 @@ const investors = [
     password: "1",
     profile: [{ name: "Mohhammad Rafi Sarker", img: "rafi.jpg" }],
     investments: [
-      { project: "Prime Tower", total: 600000, invested: 5000 },
-      { project: "Project Alpha", total: 200000, invested: 20000 }
+      { 
+        project: "Prime Tower", 
+        total: 600000, 
+        invested: [
+          { amount: 5000, date: "2026-04-05" },
+          { amount: 4000, date: "2026-06-12" }
+        ] 
+      },
+      { 
+        project: "Project Alpha", 
+        total: 200000, 
+        invested: [
+          { amount: 20000, date: "2026-03-06" }
+        ] 
+      }
     ],
     notices: [
       { title: "Payment Reminder 1", message: "Pay within 5 days", date: "2026-04-01", pin: true, expiry: "2026-04-30" },
@@ -19,11 +32,18 @@ const investors = [
     password: "1",
     profile: [{ name: "Tanvir Rehman Rifat", img: "rifat.jpg" }],
     investments: [
-      { project: "Prime Tower", total: 600000, invested: 5000 }
+      { 
+        project: "Prime Tower", 
+        total: 600000, 
+        invested: [
+          { amount: 5000, date: "2026-04-05" },
+          { amount: 4000, date: "2026-06-12" }
+        ] 
+      }
     ],
     notices: [
       { title: "Enrollment Confirmed", message: "Congratulations! Your shares in Project Alpha have been successfully registered. Welcome aboard!", date: "2026-03-06", pin: false, expiry: "" },
-      { title: "Investment Update", message: "We have received your payment of ৳5,000 for Project Alpha. Thank you!", date: "2026-03-06", pin: false, expiry: "" },
+      { title: "Investment Update", message: "We have received your payment of ৳5,000 for Project Alpha. Thank you!", date: "2026-03-06", pin: false, expiry: "" }
     ]
   }
 ];
@@ -53,7 +73,6 @@ function loadNotices() {
 
   window.noticeData = notices; // save globally
 
-  // Render notices
   let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
   let html = "";
   let unreadCount = 0;
@@ -119,27 +138,41 @@ function loadDashboard() {
   let projectHTML = "", historyHTML = "";
 
   currentUser.investments.forEach(inv => {
-    const progress = ((inv.invested / inv.total) * 100).toFixed(2);
+    const investedSum = Array.isArray(inv.invested) 
+      ? inv.invested.reduce((sum, i) => sum + i.amount, 0)
+      : inv.invested;
+    const progress = ((investedSum / inv.total) * 100).toFixed(2);
 
     totalValue += inv.total;
-    totalInvested += inv.invested;
+    totalInvested += investedSum;
 
     projectHTML += `<div class="project-card">
       <div class="project-content">
         <h3>${inv.project}</h3>
         <p><b>Total Value:</b> ৳${inv.total}</p>
-        <p><b>Invested:</b> ৳${inv.invested}</p>
+        <p><b>Invested:</b> ৳${investedSum}</p>
         <div class="progress-bar">
           <div class="progress" style="width:${progress}%">${progress}%</div>
         </div>
       </div>
     </div>`;
 
-    historyHTML += `<tr>
-      <td>${inv.project}</td>
-      <td>৳${inv.invested}</td>
-      <td>${progress}%</td>
-    </tr>`;
+    // History table — show each installment
+    if (Array.isArray(inv.invested)) {
+      inv.invested.forEach(i => {
+        historyHTML += `<tr>
+          <td>${inv.project}</td>
+          <td>৳${i.amount}</td>
+          <td>${i.date}</td>
+        </tr>`;
+      });
+    } else {
+      historyHTML += `<tr>
+        <td>${inv.project}</td>
+        <td>৳${inv.invested}</td>
+        <td>-</td>
+      </tr>`;
+    }
   });
 
   document.getElementById('user').innerText = currentUser.profile[0].name;
