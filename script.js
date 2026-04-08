@@ -141,7 +141,7 @@ function loadDashboard() {
   });
 
   document.getElementById('user').innerText = currentUser.profile[0].name;
-  document.getElementById('investment').innerText = '৳' + totalInvested;
+  document.getElementById('invested').innerText = '৳' + totalInvested;
   document.getElementById('totalProjects').innerText = currentUser.investments.length;
   document.getElementById('projectList').innerHTML = projectHTML;
   document.getElementById('historyTable').innerHTML = historyHTML;
