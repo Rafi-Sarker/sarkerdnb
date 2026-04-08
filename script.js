@@ -5,7 +5,7 @@ const investors = [
     password: "1",
     profile: [{ name: "Mohhammad Rafi Sarker", img: "rafi.jpg" }],
     investments: [
-      { project: "Prime Tower", total: 600000, invested: 0 },
+      { project: "Prime Tower", total: 600000, invested: 5000 },
       { project: "Project Alpha", total: 200000, invested: 20000 }
     ],
     notices: [
