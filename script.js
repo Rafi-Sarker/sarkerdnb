@@ -3,6 +3,9 @@ const investors = [
   {
     username: "rafi",
     password: "1",
+    profile: [
+      {name:"Mohhammad Rafi Sarker", img:"rafi.jpg"}
+    ],
     investments: [
       {project:"Project Alpha",amount:500000,roi:0,progress:35},
       {project:"Project Alpha",amount:200000,roi:0,progress:10}
@@ -156,7 +159,7 @@ function loadDashboard(){
       </div>`;
     historyHTML+=`<tr><td>${inv.project}</td><td>৳${inv.amount}</td><td>${inv.roi}%</td></tr>`;
   });
-  document.getElementById('user').innerText=currentUser.username;
+  document.getElementById('user').innerText=currentUser.profile.name;
   document.getElementById('investment').innerText='৳'+total;
   document.getElementById('roi').innerText=(roiSum/currentUser.investments.length).toFixed(2)+'%';
   document.getElementById('totalProjects').innerText=currentUser.investments.length;
