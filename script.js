@@ -2,7 +2,7 @@
 const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkLvYO7zFb0hAHx-c1Y_oIjFd9XrLVc3PNbO3SFkcDZB0c0cN1rSufukzRr2kqA1nacfBpNOw9vPuX/pub";
 
 const SHEETS = {
-  Investors: `${BASE}?gid=1569939234&single=true&output=csv`,
+  Investors: `${BASE}?gid=0&single=true&output=csv`,
   Investments: `${BASE}?gid=1466113161&single=true&output=csv`,
   UserNotices: `${BASE}?gid=1179149768&single=true&output=csv`,
   GlobalNotices: `${BASE}?gid=1569939234&single=true&output=csv`
