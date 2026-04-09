@@ -4,23 +4,21 @@ const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkLvYO7zFb0hAHx-c
 const SHEETS = {
   Investors: `${BASE}?gid=0&single=true&output=csv`,
   Investments: `${BASE}?gid=1466113161&single=true&output=csv`,
-  UserNotices: `${BASE}?gid=1179149768&single=true&output=csv`,
-  GlobalNotices: `${BASE}?gid=1569939234&single=true&output=csv`
+  Notices: `${BASE}?gid=1179149768&single=true&output=csv`
 };
 
 // ===== GLOBAL DATA =====
 let investors = [];
 let investments = [];
-let userNotices = [];
-let globalNotices = [];
+let notices = [];
 
 let currentUser = null;
 let isDataLoaded = false;
 
-// ===== BETTER CSV PARSER =====
+// ===== CSV PARSER (SAFE) =====
 function parseCSV(text) {
   const rows = text.trim().split("\n").map(r => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
-  const headers = rows.shift().map(h => h.trim());
+  const headers = rows.shift().map(h => h.trim().toLowerCase());
 
   return rows.map(r => {
     const obj = {};
@@ -45,8 +43,7 @@ async function initSheets() {
 
       if (key === "Investors") investors = data;
       if (key === "Investments") investments = data;
-      if (key === "UserNotices") userNotices = data;
-      if (key === "GlobalNotices") globalNotices = data;
+      if (key === "Notices") notices = data;
 
       console.log(`✅ ${key}`, data);
     }
@@ -148,31 +145,33 @@ function loadDashboard() {
   document.getElementById("historyTable").innerHTML = historyHTML;
 }
 
-// ===== NOTICES =====
+// ===== NOTICES (NEW LOGIC) =====
 function loadNotices() {
 
-  let notices = [...globalNotices];
-
-  let userSpecific = userNotices.filter(n => n.username === currentUser.username);
-  notices = notices.concat(userSpecific);
+  let filtered = notices.filter(n =>
+    !n.username || n.username === currentUser.username
+  );
 
   const today = new Date();
 
-  notices = notices.filter(n => !n.expiry || new Date(n.expiry) >= today);
+  filtered = filtered.filter(n =>
+    !n.expiry || new Date(n.expiry) >= today
+  );
 
-  notices.sort((a, b) =>
+  // pin first
+  filtered.sort((a, b) =>
     (String(b.pin).toLowerCase() === "true") -
     (String(a.pin).toLowerCase() === "true")
   );
 
-  window.noticeData = notices;
+  window.noticeData = filtered;
 
   let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
 
   let html = "";
   let unreadCount = 0;
 
-  notices.forEach((n, i) => {
+  filtered.forEach((n, i) => {
 
     const isRead = read.includes(n.title);
     if (!isRead) unreadCount++;
@@ -184,6 +183,10 @@ function loadNotices() {
       </div>
     `;
   });
+
+  if (filtered.length === 0) {
+    html = "<p style='font-size:13px;color:#777;'>No updates</p>";
+  }
 
   document.getElementById("noticeList").innerHTML = html;
 
