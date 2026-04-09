@@ -12,14 +12,13 @@ let isDataLoaded = false;
 
 // ===== INIT GOOGLE SHEET =====
 function initSheet() {
-
-  // UI loading effect
-  document.body.style.opacity = "0.5";
+  console.log("⏳ Loading Google Sheet...");
 
   Tabletop.init({
-    key: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pubhtml`,
+    key: SHEET_ID,
     simpleSheet: false,
     callback: function (data) {
+      console.log("📦 FULL DATA:", data);
 
       investors = data.Investors?.elements || [];
       investments = data.Investments?.elements || [];
@@ -27,24 +26,27 @@ function initSheet() {
       globalNotices = data.GlobalNotices?.elements || [];
 
       isDataLoaded = true;
-
-      document.body.style.opacity = "1";
-
-      console.log("✅ Data Loaded");
+      console.log("✅ Data Loaded Successfully");
+    },
+    error: function (err) {
+      console.error("❌ Tabletop Error:", err);
+      alert("Failed to load sheet data. Check the Sheet ID and publish status.");
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", initSheet);
+// ===== WAIT FOR DATA BEFORE LOGIN =====
+function waitForDataAndLogin() {
+  if (!isDataLoaded) {
+    console.log("⏳ Waiting for data...");
+    setTimeout(waitForDataAndLogin, 500); // Retry after 500ms
+  } else {
+    login();
+  }
+}
 
 // ===== LOGIN =====
 function login() {
-
-  if (!isDataLoaded) {
-    alert("Loading data... please wait");
-    return;
-  }
-
   const u = document.getElementById('username').value.trim();
   const p = document.getElementById('password').value.trim();
 
@@ -57,20 +59,19 @@ function login() {
     document.getElementById('dashboardPage').style.display = 'block';
     loadDashboard();
   } else {
-    alert("Wrong username or password");
+    alert("❌ Wrong username or password");
   }
 }
 
 // ===== DASHBOARD =====
 function loadDashboard() {
-
   loadNotices();
 
-  let userInvestments = investments.filter(i =>
+  const userInvestments = investments.filter(i =>
     i.username === currentUser.username
   );
 
-  let grouped = {};
+  const grouped = {};
 
   // Group by project
   userInvestments.forEach(i => {
@@ -80,7 +81,6 @@ function loadDashboard() {
         invested: []
       };
     }
-
     grouped[i.project].invested.push({
       amount: Number(i.amount) || 0,
       date: i.date || "-"
@@ -93,13 +93,9 @@ function loadDashboard() {
   let historyHTML = "";
 
   Object.keys(grouped).forEach(project => {
-
-    let inv = grouped[project];
-
-    let investedSum = inv.invested.reduce((s, i) => s + i.amount, 0);
-    let progress = inv.total > 0
-      ? ((investedSum / inv.total) * 100).toFixed(2)
-      : 0;
+    const inv = grouped[project];
+    const investedSum = inv.invested.reduce((s, i) => s + i.amount, 0);
+    const progress = inv.total > 0 ? ((investedSum / inv.total) * 100).toFixed(2) : 0;
 
     totalValue += inv.total;
     totalInvested += investedSum;
@@ -138,18 +134,16 @@ function loadDashboard() {
 
 // ===== NOTICES =====
 function loadNotices() {
+  if (!currentUser) return;
 
   let notices = [...globalNotices];
-
-  let userSpecific = userNotices.filter(n =>
-    n.username === currentUser?.username
+  const userSpecific = userNotices.filter(n =>
+    n.username === currentUser.username
   );
 
   notices = notices.concat(userSpecific);
 
   const today = new Date();
-
-  // Remove expired
   notices = notices.filter(n =>
     !n.expiry || new Date(n.expiry) >= today
   );
@@ -162,15 +156,13 @@ function loadNotices() {
 
   window.noticeData = notices;
 
-  let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
+  const read = JSON.parse(localStorage.getItem("readNotices") || "[]");
   let html = "";
   let unreadCount = 0;
 
   notices.forEach((n, i) => {
-
     const isRead = read.includes(n.title);
     if (!isRead) unreadCount++;
-
     html += `
       <div class="notice-item ${!isRead ? 'unread' : ''}" onclick="openNotice(${i})">
         <h4>${n.title} ${String(n.pin).toLowerCase() === "true" ? "📌" : ""}</h4>
@@ -179,9 +171,7 @@ function loadNotices() {
     `;
   });
 
-  if (notices.length === 0) {
-    html = "<p style='font-size:13px;color:#777;'>No updates</p>";
-  }
+  if (notices.length === 0) html = "<p style='font-size:13px;color:#777;'>No updates</p>";
 
   document.getElementById('noticeList').innerHTML = html;
 
@@ -191,15 +181,13 @@ function loadNotices() {
 
 // ===== NOTICE MODAL =====
 function openNotice(i) {
-
   const n = window.noticeData[i];
 
   document.getElementById('noticeTitle').innerText = n.title;
   document.getElementById('noticeMessage').innerText = n.message;
   document.getElementById('noticeModal').style.display = 'flex';
 
-  let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
-
+  const read = JSON.parse(localStorage.getItem("readNotices") || "[]");
   if (!read.includes(n.title)) {
     read.push(n.title);
     localStorage.setItem("readNotices", JSON.stringify(read));
@@ -212,7 +200,17 @@ function closeNotice() {
   document.getElementById('noticeModal').style.display = 'none';
 }
 
-// ===== LOGOUT (OPTIONAL) =====
+// ===== LOGOUT =====
 function logout() {
   location.reload();
 }
+
+// ===== DOM READY =====
+document.addEventListener("DOMContentLoaded", () => {
+  initSheet();
+
+  const loginBtn = document.querySelector("button[onclick='waitForDataAndLogin()']");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", waitForDataAndLogin);
+  }
+});
