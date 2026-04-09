@@ -1,4 +1,4 @@
-const SHEET_ID = "YOUR_SHEET_ID";
+const SHEET_ID = "https://docs.google.com/spreadsheets/d/1C5_z0VJIxW-KlD1MppZPogrvI1tpHrowZIpPSG6Lw5s/edit?gid=0#gid=0";
 
 let investors = [];
 let investments = [];
