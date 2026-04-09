@@ -1,4 +1,4 @@
-const SHEET_ID = "https://docs.google.com/spreadsheets/d/1C5_z0VJIxW-KlD1MppZPogrvI1tpHrowZIpPSG6Lw5s/edit?gid=0#gid=0";
+const SHEET_ID = "1C5_z0VJIxW-KlD1MppZPogrvI1tpHrowZIpPSG6Lw5s";
 
 let investors = [];
 let investments = [];
@@ -13,7 +13,6 @@ function initSheet() {
     key: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pubhtml`,
     simpleSheet: false,
     callback: function (data) {
-
       investors = data.Investors.elements;
       investments = data.Investments.elements;
       userNotices = data.UserNotices.elements;
