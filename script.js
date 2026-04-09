@@ -15,9 +15,12 @@ let notices = [];
 let currentUser = null;
 let isDataLoaded = false;
 
-// ===== CSV PARSER (SAFE) =====
+// ===== CSV PARSER =====
 function parseCSV(text) {
-  const rows = text.trim().split("\n").map(r => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
+  const rows = text.trim().split("\n").map(r =>
+    r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+  );
+
   const headers = rows.shift().map(h => h.trim().toLowerCase());
 
   return rows.map(r => {
@@ -51,6 +54,9 @@ async function initSheets() {
     isDataLoaded = true;
     console.log("✅ ALL DATA LOADED");
 
+    // 🔥 AUTO LOAD NOTICES FOR ALL PAGES
+    loadNotices();
+
   } catch (err) {
     console.error("❌ ERROR:", err);
     alert("Sheet loading failed");
@@ -61,12 +67,14 @@ async function initSheets() {
 function waitForDataAndLogin() {
   if (!isDataLoaded) {
     setTimeout(waitForDataAndLogin, 500);
-  } else login();
+  } else {
+    login();
+  }
 }
 
 function login() {
-  const u = document.getElementById("username").value.trim();
-  const p = document.getElementById("password").value.trim();
+  const u = document.getElementById("username")?.value.trim();
+  const p = document.getElementById("password")?.value.trim();
 
   currentUser = investors.find(i => i.username === u && i.password === p);
 
@@ -83,7 +91,9 @@ function loadDashboard() {
 
   loadNotices();
 
-  const userInvestments = investments.filter(i => i.username === currentUser.username);
+  const userInvestments = investments.filter(i =>
+    i.username === currentUser.username
+  );
 
   const grouped = {};
 
@@ -110,7 +120,9 @@ function loadDashboard() {
 
     const inv = grouped[project];
     const investedSum = inv.invested.reduce((s, i) => s + i.amount, 0);
-    const progress = inv.total > 0 ? ((investedSum / inv.total) * 100).toFixed(2) : 0;
+    const progress = inv.total > 0
+      ? ((investedSum / inv.total) * 100).toFixed(2)
+      : 0;
 
     totalValue += inv.total;
     totalInvested += investedSum;
@@ -129,28 +141,39 @@ function loadDashboard() {
     `;
 
     inv.invested.forEach(i => {
-      historyHTML += `<tr>
-        <td>${project}</td>
-        <td>৳${i.amount}</td>
-        <td>${i.date}</td>
-      </tr>`;
+      historyHTML += `
+        <tr>
+          <td>${project}</td>
+          <td>৳${i.amount}</td>
+          <td>${i.date}</td>
+        </tr>`;
     });
   });
 
-  document.getElementById("user").innerText = currentUser.name || currentUser.username;
-  document.getElementById("investment").innerText = "৳" + totalValue;
-  document.getElementById("invested").innerText = "৳" + totalInvested;
-  document.getElementById("totalProjects").innerText = Object.keys(grouped).length;
-  document.getElementById("projectList").innerHTML = projectHTML;
-  document.getElementById("historyTable").innerHTML = historyHTML;
+  // Safe DOM updates
+  document.getElementById("user") && (document.getElementById("user").innerText = currentUser.name || currentUser.username);
+  document.getElementById("investment") && (document.getElementById("investment").innerText = "৳" + totalValue);
+  document.getElementById("invested") && (document.getElementById("invested").innerText = "৳" + totalInvested);
+  document.getElementById("totalProjects") && (document.getElementById("totalProjects").innerText = Object.keys(grouped).length);
+  document.getElementById("projectList") && (document.getElementById("projectList").innerHTML = projectHTML);
+  document.getElementById("historyTable") && (document.getElementById("historyTable").innerHTML = historyHTML);
 }
 
-// ===== NOTICES (NEW LOGIC) =====
+// ===== NOTICES (FINAL FIX) =====
 function loadNotices() {
 
-  let filtered = notices.filter(n =>
-    !n.username || n.username === currentUser.username
-  );
+  // 🔥 HANDLE BOTH CASES
+  let filtered = [];
+
+  if (currentUser) {
+    filtered = notices.filter(n =>
+      !n.username || n.username === currentUser.username
+    );
+  } else {
+    filtered = notices.filter(n =>
+      !n.username
+    );
+  }
 
   const today = new Date();
 
@@ -158,7 +181,7 @@ function loadNotices() {
     !n.expiry || new Date(n.expiry) >= today
   );
 
-  // pin first
+  // Pin first
   filtered.sort((a, b) =>
     (String(b.pin).toLowerCase() === "true") -
     (String(a.pin).toLowerCase() === "true")
@@ -178,8 +201,8 @@ function loadNotices() {
 
     html += `
       <div class="notice-item ${!isRead ? "unread" : ""}" onclick="openNotice(${i})">
-        <h4>${n.title} ${String(n.pin).toLowerCase() === "true" ? "📌" : ""}</h4>
-        <small>${n.date}</small>
+        <h4>${n.title || "No Title"} ${String(n.pin).toLowerCase() === "true" ? "📌" : ""}</h4>
+        <small>${n.date || "-"}</small>
       </div>
     `;
   });
@@ -188,7 +211,9 @@ function loadNotices() {
     html = "<p style='font-size:13px;color:#777;'>No updates</p>";
   }
 
-  document.getElementById("noticeList").innerHTML = html;
+  // Safe DOM injection
+  const list = document.getElementById("noticeList");
+  if (list) list.innerHTML = html;
 
   const badge = document.getElementById("noticeCount");
   if (badge) badge.innerText = unreadCount;
@@ -198,9 +223,9 @@ function loadNotices() {
 function openNotice(i) {
   const n = window.noticeData[i];
 
-  document.getElementById("noticeTitle").innerText = n.title;
-  document.getElementById("noticeMessage").innerText = n.message;
-  document.getElementById("noticeModal").style.display = "flex";
+  document.getElementById("noticeTitle") && (document.getElementById("noticeTitle").innerText = n.title);
+  document.getElementById("noticeMessage") && (document.getElementById("noticeMessage").innerText = n.message);
+  document.getElementById("noticeModal") && (document.getElementById("noticeModal").style.display = "flex");
 
   let read = JSON.parse(localStorage.getItem("readNotices") || "[]");
 
@@ -213,7 +238,7 @@ function openNotice(i) {
 }
 
 function closeNotice() {
-  document.getElementById("noticeModal").style.display = "none";
+  document.getElementById("noticeModal") && (document.getElementById("noticeModal").style.display = "none");
 }
 
 // ===== INIT =====
