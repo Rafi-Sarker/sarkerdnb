@@ -1,58 +1,37 @@
-/* =========================
-   BASE RESET
-========================= */
+/* ================= GLOBAL RESET ================= */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f7fb;
-    color: #1a1a1a;
-    overflow-x: hidden;
+    color: #333;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* =========================
-   LAYOUT SYSTEM
-========================= */
+/* ================= CONTAINER ================= */
 .container {
+    width: 90%;
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
 }
 
-.card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    margin-bottom: 15px;
-}
-
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: linear-gradient(135deg,#0a2e6f,#123a8c);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-    padding: 12px 30px;
+    background: #0a2e6f;
+    color: white;
+    padding: 15px 0;
 }
 
 .header-inner {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .logo-container {
@@ -62,42 +41,31 @@ a {
 }
 
 .logo-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: contain;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
 }
 
 .logo-text .logo {
-    font-size: 1.4rem;
-    color: gold;
+    font-size: 18px;
 }
 
-.logo-text .motto {
-    font-size: 0.85rem;
-    color: #fff;
-    font-style: italic;
-}
-
-.nav {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+.motto {
+    font-size: 12px;
+    opacity: 0.8;
 }
 
 .nav a {
-    color: gold;
-    font-weight: 600;
-    transition: 0.3s;
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
 }
 
 .nav a:hover {
-    color: white;
+    color: gold;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 .hero {
     background: linear-gradient(135deg, #0a2e6f, #123a8c);
     color: white;
@@ -111,6 +79,7 @@ a {
 }
 
 .hero-content p {
+    font-size: 1.1rem;
     opacity: 0.9;
     margin-bottom: 20px;
 }
@@ -120,145 +89,204 @@ a {
     padding: 10px 20px;
     background: gold;
     color: #0a2e6f;
+    font-weight: bold;
     border-radius: 8px;
+    transition: 0.3s ease;
+    text-decoration: none;
 }
 
-/* =========================
-   GRID SYSTEMS
-========================= */
-.dashboard,
-.stats,
-.projects,
+.btn:hover {
+    background: #e6c200;
+    transform: translateY(-2px);
+}
+
+/* ================= STATS ================= */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: 40px auto;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    color: #0a2e6f;
+}
+
+/* ================= UPDATES ================= */
+.updates {
+    margin: 40px auto;
+}
+
+.update-card {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.update-card:hover {
+    transform: translateY(-3px);
+}
+
+.update-card h4 {
+    color: #0a2e6f;
+}
+
+/* ================= ACTIONS ================= */
+.actions {
+    margin: 40px auto;
+}
+
 .action-grid {
     display: grid;
-    gap: 20px;
-}
-
-.stats {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
 }
 
-.dashboard {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-.projects {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.action-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-/* =========================
-   CARDS
-========================= */
-.stat-card,
-.project-card,
-.update-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* =========================
-   PROJECT
-========================= */
-.project-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-
-.project-title {
-    color: #0a2e6f;
-    margin: 10px 0;
-}
-
-/* =========================
-   PROGRESS BAR
-========================= */
-.progress-bar {
-    background: #ddd;
-    height: 18px;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: #0a2e6f;
-    color: gold;
-    font-size: 12px;
-    text-align: center;
-}
-
-/* =========================
-   ACTION CARDS
-========================= */
 .action-card {
+    display: block;
     background: #0a2e6f;
     color: white;
     padding: 20px;
-    border-radius: 12px;
     text-align: center;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-decoration: none;
 }
 
 .action-card:hover {
     background: #123a8c;
+    transform: translateY(-3px);
 }
 
-/* =========================
-   CTA
-========================= */
-.cta a,
-.cta {
-    display: block;
-    background: gold;
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: bold;
+/* ================= PROJECTS ================= */
+.projects {
+    display: grid;
+    gap: 20px;
+    margin: 30px 0;
 }
 
-/* =========================
-   TABLE
-========================= */
-.history table {
-    width: 100%;
-    border-collapse: collapse;
+.project-card {
     background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.history th,
-.history td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.history th {
+.project-content {
+    padding: 15px;
+}
+
+.project-title {
+    color: #0a2e6f;
+}
+
+.progress-bar {
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress {
     background: #0a2e6f;
-    color: gold;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* ================= CARDS ================= */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* ================= LOGIN ================= */
+.login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.login-box input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* ================= FOOTER ================= */
 .footer {
     text-align: center;
     padding: 20px;
-    background: #0a2e6f;
-    color: gold;
     margin-top: 40px;
+    background: #0a2e6f;
+    color: white;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-    .header-inner {
-        flex-direction: column;
-        gap: 10px;
-    }
+/* ================= NOTICE ================= */
+.notice-card {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.notice-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.notice-box {
+    background: white;
+    padding: 20px;
+    margin: 100px auto;
+    width: 300px;
+    border-radius: 12px;
+}
+
+/* ================= ABOUT ================= */
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.images img {
+    width: 100%;
+    border-radius: 10px;
 }
