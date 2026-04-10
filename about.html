@@ -106,42 +106,48 @@ function toggleReviews(){
     </div>
   </div>
 
-  <!-- Founder Message -->
-  <div class="card">
-    <h2>Founder’s Message</h2>
+  <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
+
+  <!-- Founder Image -->
+  <div style="flex:1 1 150px; text-align:center;">
+    <img src="37.jpg" alt="Founder" style="
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    ">
+  </div>
+
+  <!-- Founder Content -->
+  <div style="flex:2 1 300px;">
+    <h2 style="margin:0;">Founder’s Message</h2>
+    <p style="margin-top:10px; font-style:italic; color:#555;">
+      “We don’t just construct buildings — we build trust.”
+    </p>
+
     <p>
-      We don’t just construct buildings — we build trust. Every project we take is handled 
-      with responsibility, honesty, and a commitment to quality that reflects our values.
+      At Sarker Design & Build, every project reflects our commitment to quality, 
+      transparency, and long-term value. We focus on practical engineering solutions 
+      that ensure durability and client satisfaction.
+    </p>
+
+    <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
+      — Engr. Sarker (Founder)
     </p>
   </div>
 
 </div>
 
-<!-- Floating Reviews Button -->
-<button onclick="toggleReviews()" style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:gold;
-color:#0a2e6f;
-border:none;
-padding:12px 18px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-z-index:999;
-">
-Reviews
-</button>
+</div>
 
-<!-- Floating Review Box -->
+<!-- Floating Reviews Button -->
 <div id="reviewBox" style="
 display:none;
 position:fixed;
 bottom:80px;
 right:20px;
-width:300px;
+width:320px;
 background:#fff;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
@@ -151,25 +157,49 @@ z-index:999;
 animation: fadeIn 0.3s ease;
 ">
 
-<h3>Client Reviews</h3>
+<h3 style="margin-bottom:10px;">Client Reviews</h3>
 
-<div style="margin-bottom:10px;">
-  ⭐⭐⭐⭐⭐ <br>
-  <small>“Very professional and honest work.”</small>
+<!-- Review Item -->
+<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
+  <strong>Rahim Uddin</strong><br>
+  ⭐⭐⭐⭐⭐
+  <p style="margin:5px 0 0; font-size:13px;">
+    Very professional and honest work. Highly recommended.
+  </p>
 </div>
 
-<div style="margin-bottom:10px;">
-  ⭐⭐⭐⭐⭐ <br>
-  <small>“Project completed on time with quality.”</small>
+<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
+  <strong>Karim Hasan</strong><br>
+  ⭐⭐⭐⭐⭐
+  <p style="margin:5px 0 0; font-size:13px;">
+    Completed project on time with great quality control.
+  </p>
 </div>
 
-<div style="margin-bottom:10px;">
-  ⭐⭐⭐⭐☆ <br>
-  <small>“Good communication and support.”</small>
+<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
+  <strong>Abdullah Khan</strong><br>
+  ⭐⭐⭐⭐☆
+  <p style="margin:5px 0 0; font-size:13px;">
+    Good communication and clear explanation throughout the project.
+  </p>
 </div>
+
+<!-- Future Comment Button -->
+<button style="
+margin-top:10px;
+padding:10px;
+border:none;
+background:gold;
+color:#0a2e6f;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+">
+Leave a Review
+</button>
 
 <button onclick="toggleReviews()" style="
-margin-top:10px;
+margin-top:8px;
 padding:8px;
 border:none;
 background:#0a2e6f;
@@ -179,6 +209,8 @@ cursor:pointer;
 ">
 Close
 </button>
+
+</div>
 
 </div>
 
