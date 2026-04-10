@@ -7,82 +7,52 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ================= SCROLL ANIMATION ================= */
+/* ===== SIMPLE SCROLL ANIMATION (NO LIBRARY) ===== */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: 0.8s ease;
+    transition: all 0.8s ease;
 }
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* ================= HERO ================= */
-.hero {
-    height: 90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:white;
-    background:
-        linear-gradient(rgba(10,46,111,0.7),rgba(10,46,111,0.7)),
-        url('3.jpg') center/cover no-repeat;
-    padding:20px;
-}
-
-/* ================= SLIDER ================= */
-.slider-wrapper {
-    position: relative;
-}
-
+/* ===== SLIDER ===== */
 .slider {
-    display:flex;
-    gap:20px;
-    overflow:hidden;
-    scroll-behavior:smooth;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
 }
 
-.slider-track {
-    display:flex;
-    gap:20px;
+.slides {
+    display: flex;
     transition: transform 0.5s ease;
 }
 
-.slide-card {
-    min-width:300px;
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-.slide-card img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
+.slide .card {
+    height: 100%;
 }
 
-/* ================= BUTTONS ================= */
-.slider-btn {
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:#0a2e6f;
-    color:gold;
-    border:none;
-    padding:10px 12px;
-    border-radius:50%;
-    cursor:pointer;
-    z-index:10;
+.slider-buttons {
+    text-align: center;
+    margin-top: 10px;
 }
 
-.prev { left:-10px; }
-.next { right:-10px; }
-
-.slider-btn:hover {
-    background:#123a8c;
+.slider-buttons button {
+    background: #0a2e6f;
+    color: gold;
+    border: none;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 </style>
 
@@ -113,7 +83,18 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section style="
+    height: 90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    background:linear-gradient(rgba(10,46,111,0.7),rgba(10,46,111,0.7)),
+               url('3.jpg') center/cover no-repeat;
+    padding:20px;
+">
+
   <div class="reveal">
     <h1 style="font-size:3rem;">We Build the Future</h1>
     <p style="font-size:1.2rem;">
@@ -121,18 +102,19 @@
     </p>
     <a href="#projects" class="login-btn">Explore Work</a>
   </div>
+
 </section>
 
 <!-- ABOUT -->
-<section class="container reveal" style="text-align:center; padding:60px 20px;">
+<section class="container reveal" style="padding:60px 20px; text-align:center;">
   <h2 style="color:#0a2e6f;">About Us</h2>
   <p style="max-width:900px; margin:auto; color:#555; line-height:1.8;">
-    Sarker Design & Build delivers high-quality construction and design solutions
-    with a focus on safety, durability, and modern engineering excellence.
+    We are a professional construction and design firm delivering high-quality
+    residential and commercial projects with modern engineering standards.
   </p>
 </section>
 
-<!-- STATS -->
+<!-- STATS (BG IMAGE 37.jpg) -->
 <section style="
     background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
     url('37.jpg') center/cover no-repeat;
@@ -141,102 +123,99 @@
 ">
 
   <div class="container dashboard reveal">
+
     <div class="card"><h3>10+</h3><p>Projects Completed</p></div>
     <div class="card"><h3>5</h3><p>Ongoing Works</p></div>
     <div class="card"><h3>8+</h3><p>Years Experience</p></div>
     <div class="card"><h3>100%</h3><p>Client Satisfaction</p></div>
+
   </div>
 
 </section>
 
 <!-- SERVICES -->
 <section id="services" class="container reveal" style="padding:60px 20px;">
+
   <h2 style="text-align:center; color:#0a2e6f;">Our Services</h2>
 
   <div class="projects">
+
     <div class="card">
       <h3>🏗 Construction</h3>
-      <p>Residential & commercial building execution.</p>
+      <p>Residential, commercial & industrial building execution.</p>
     </div>
 
     <div class="card">
       <h3>📐 Design</h3>
-      <p>Modern architectural and 3D planning solutions.</p>
+      <p>Modern architectural planning and 3D visualization.</p>
     </div>
 
     <div class="card">
       <h3>📊 Management</h3>
-      <p>Full project supervision and cost control.</p>
+      <p>Full project supervision and cost control systems.</p>
     </div>
+
   </div>
+
 </section>
 
-<!-- FEATURED PROJECTS SLIDER -->
+<!-- PROJECT SLIDER -->
 <section id="projects" class="container reveal">
 
-<h2 style="text-align:center; color:#0a2e6f;">Featured Projects</h2>
+  <h2 style="text-align:center; color:#0a2e6f;">Featured Projects</h2>
 
-<div class="slider-wrapper">
+  <div class="slider">
 
-  <button class="slider-btn prev" onclick="moveSlide(-1)">‹</button>
+    <div class="slides" id="slides">
 
-  <div class="slider" id="slider">
-
-    <div class="slider-track" id="track">
-
-      <div class="slide-card">
-        <img src="3.jpg">
+      <div class="slide">
         <div class="card">
           <h3>Prime Tower</h3>
-          <p>High-rise residential project.</p>
+          <img src="3.jpg" style="width:100%; border-radius:10px;">
+          <p>Modern high-rise residential building.</p>
         </div>
       </div>
 
-      <div class="slide-card">
-        <img src="3.jpg">
+      <div class="slide">
         <div class="card">
           <h3>City Complex</h3>
-          <p>Mixed-use commercial project.</p>
+          <img src="3.jpg" style="width:100%; border-radius:10px;">
+          <p>Commercial mixed-use development project.</p>
         </div>
       </div>
 
-      <div class="slide-card">
-        <img src="3.jpg">
+      <div class="slide">
         <div class="card">
           <h3>Green Villa</h3>
-          <p>Eco-friendly villa design.</p>
-        </div>
-      </div>
-
-      <div class="slide-card">
-        <img src="3.jpg">
-        <div class="card">
-          <h3>Sky Residency</h3>
-          <p>Luxury apartment system.</p>
+          <img src="3.jpg" style="width:100%; border-radius:10px;">
+          <p>Eco-friendly residential villa design.</p>
         </div>
       </div>
 
     </div>
+
+    <div class="slider-buttons">
+      <button onclick="prevSlide()">⬅ Prev</button>
+      <button onclick="nextSlide()">Next ➡</button>
+    </div>
+
   </div>
-
-  <button class="slider-btn next" onclick="moveSlide(1)">›</button>
-
-</div>
 
 </section>
 
 <!-- CTA -->
-<section style="
+<section class="reveal" style="
     text-align:center;
     padding:80px 20px;
     background:linear-gradient(135deg,#0a2e6f,#123a8c);
     color:white;
 ">
 
-  <h2>Let’s Build Something Great Together</h2>
-  <p>Start your project with confidence.</p>
+  <h2>Let’s Build Something Great</h2>
+  <p>Start your project with confidence and trust.</p>
 
   <a href="user.html" class="login-btn">Get Started</a>
+
 </section>
 
 <!-- FOOTER -->
@@ -244,33 +223,41 @@
 © 2026 Sarker Design & Build
 </footer>
 
-<!-- ================= JS ================= -->
+<!-- ===== JS ===== -->
 <script>
-// scroll animation
-const items = document.querySelectorAll(".reveal");
+// ===== SCROLL REVEAL =====
+const elements = document.querySelectorAll(".reveal");
 
-window.addEventListener("scroll", () => {
-    items.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+function revealOnScroll() {
+    elements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
             el.classList.add("active");
         }
     });
-});
+}
 
-// slider logic
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// ===== SIMPLE SLIDER =====
 let index = 0;
 
-function moveSlide(dir) {
-    const track = document.getElementById("track");
-    const cards = document.querySelectorAll(".slide-card");
-    const max = cards.length - 1;
+function showSlide() {
+    const slides = document.getElementById("slides");
+    slides.style.transform = "translateX(" + (-index * 100) + "%)";
+}
 
-    index += dir;
+function nextSlide() {
+    const total = document.querySelectorAll(".slide").length;
+    index = (index + 1) % total;
+    showSlide();
+}
 
-    if (index < 0) index = max;
-    if (index > max) index = 0;
-
-    track.style.transform = `translateX(${-index * 320}px)`;
+function prevSlide() {
+    const total = document.querySelectorAll(".slide").length;
+    index = (index - 1 + total) % total;
+    showSlide();
 }
 </script>
 
