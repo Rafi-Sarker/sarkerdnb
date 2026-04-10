@@ -54,8 +54,8 @@ async function initSheets() {
     isDataLoaded = true;
     console.log("✅ ALL DATA LOADED");
 
-    // 🔥 AUTO LOAD NOTICES FOR ALL PAGES
     loadNotices();
+    loadReviews(); // 🔥 NEW
 
   } catch (err) {
     console.error("❌ ERROR:", err);
@@ -90,6 +90,7 @@ function login() {
 function loadDashboard() {
 
   loadNotices();
+  loadReviews(); // 🔥 ensure always fresh
 
   const userInvestments = investments.filter(i =>
     i.username === currentUser.username
@@ -150,7 +151,6 @@ function loadDashboard() {
     });
   });
 
-  // Safe DOM updates
   document.getElementById("user") && (document.getElementById("user").innerText = currentUser.name || currentUser.username);
   document.getElementById("investment") && (document.getElementById("investment").innerText = "৳" + totalValue);
   document.getElementById("invested") && (document.getElementById("invested").innerText = "৳" + totalInvested);
@@ -159,10 +159,39 @@ function loadDashboard() {
   document.getElementById("historyTable") && (document.getElementById("historyTable").innerHTML = historyHTML);
 }
 
-// ===== NOTICES (FINAL FIX) =====
+// ===== REVIEWS (FROM INVESTORS) =====
+function loadReviews() {
+  const box = document.getElementById("reviewList");
+  if (!box) return;
+
+  const reviewUsers = investors.filter(i => i.comment && i.comment.trim() !== "");
+
+  if (!reviewUsers.length) {
+    box.innerHTML = "<p style='font-size:13px;color:#777;'>No reviews yet</p>";
+    return;
+  }
+
+  let html = "";
+
+  reviewUsers.forEach(u => {
+    const rating = Number(u.rating || 0);
+    const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
+
+    html += `
+      <div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
+        <strong>${u.name || u.username}</strong><br>
+        ${stars}
+        <p>${u.comment}</p>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+// ===== NOTICES =====
 function loadNotices() {
 
-  // 🔥 HANDLE BOTH CASES
   let filtered = [];
 
   if (currentUser) {
@@ -181,7 +210,6 @@ function loadNotices() {
     !n.expiry || new Date(n.expiry) >= today
   );
 
-  // Pin first
   filtered.sort((a, b) =>
     (String(b.pin).toLowerCase() === "true") -
     (String(a.pin).toLowerCase() === "true")
@@ -211,7 +239,6 @@ function loadNotices() {
     html = "<p style='font-size:13px;color:#777;'>No updates</p>";
   }
 
-  // Safe DOM injection
   const list = document.getElementById("noticeList");
   if (list) list.innerHTML = html;
 
