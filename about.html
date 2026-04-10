@@ -159,24 +159,6 @@ function toggleReviews(){
 
 
 <!-- Reviews Button -->
-<button onclick="toggleReviews()" style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:gold;
-color:#0a2e6f;
-border:none;
-padding:12px 18px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-z-index:999;
-">
-Reviews
-</button>
-
-<!-- Review Box -->
 <div id="reviewBox" style="
 display:none;
 position:fixed;
@@ -196,23 +178,7 @@ animation: fadeIn 0.3s ease;
 
 <h3>Client Reviews</h3>
 
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Rahim Uddin</strong><br>
-  ⭐⭐⭐⭐⭐
-  <p>Very professional and honest work.</p>
-</div>
-
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Karim Hasan</strong><br>
-  ⭐⭐⭐⭐⭐
-  <p>Project completed on time with quality.</p>
-</div>
-
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Abdullah Khan</strong><br>
-  ⭐⭐⭐⭐☆
-  <p>Good communication and support.</p>
-</div>
+<div id="reviewList"></div>
 
 <button onclick="window.location.href='user.html'" style="
 margin-top:10px;
