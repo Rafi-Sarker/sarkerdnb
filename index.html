@@ -7,20 +7,20 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="sdb-dashboard">
+<body>
 
-<header class="sdb-header">
-  <div class="sdb-header-inner">
+<header class="header">
+  <div class="header-inner">
 
-    <div class="sdb-logo-container">
-      <img src="37.jpg" class="sdb-logo-image" alt="Logo">
-      <div class="sdb-logo-text">
+    <div class="logo-container">
+      <img src="37.jpg" class="logo-image" alt="Logo">
+      <div class="logo-text">
         <h2>Sarker Design & Build</h2>
-        <p>Building Trust Through Excellence</p>
+        <p class="motto">Building Trust Through Excellence</p>
       </div>
     </div>
 
-    <nav class="sdb-nav">
+    <nav class="nav">
       <a href="index.html">Dashboard</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
@@ -30,42 +30,43 @@
   </div>
 </header>
 
-<section class="sdb-hero">
-  <div class="sdb-hero-content">
-    <h1>Welcome to Your Dashboard</h1>
-    <p>Monitor projects, track progress, and stay updated in real-time.</p>
-    <a href="projects.html" class="sdb-btn">View Projects</a>
-  </div>
+<!-- HERO (no CSS exists, but safe to keep simple) -->
+<section style="padding:80px 20px; text-align:center; background:linear-gradient(135deg,#0a2e6f,#123a8c); color:white;">
+  <h1>Welcome to Your Dashboard</h1>
+  <p>Monitor projects, track progress, and stay updated in real-time.</p>
+  <a href="projects.html" class="cta" style="display:inline-block; width:auto; padding:10px 20px; margin-top:15px;">View Projects</a>
 </section>
 
-<section class="sdb-dashboard-grid sdb-container">
-  <div class="sdb-card"><h3>2</h3><p>Active Projects</p></div>
-  <div class="sdb-card"><h3>45%</h3><p>Average Progress</p></div>
-  <div class="sdb-card"><h3>5+</h3><p>Upcoming Projects</p></div>
-  <div class="sdb-card"><h3>100%</h3><p>Client Satisfaction</p></div>
+<!-- DASHBOARD CARDS (FIXED: use .dashboard + .card) -->
+<section class="container dashboard">
+  <div class="card"><h3>2</h3><p>Active Projects</p></div>
+  <div class="card"><h3>45%</h3><p>Average Progress</p></div>
+  <div class="card"><h3>5+</h3><p>Upcoming Projects</p></div>
+  <div class="card"><h3>100%</h3><p>Client Satisfaction</p></div>
 </section>
 
-<section class="sdb-container">
+<!-- RECENT UPDATES -->
+<section class="container">
   <h2>Recent Updates</h2>
-  <div class="sdb-update-card">
+  <div class="card">
     <h4>Prime Tower</h4>
     <p>Foundation completed successfully.</p>
   </div>
 </section>
 
-<section class="sdb-container">
+<!-- QUICK ACTIONS -->
+<section class="container">
   <h2>Quick Actions</h2>
 
-  <div class="sdb-action-grid">
-    <a href="projects.html" class="sdb-action-card">📁 View Projects</a>
-    <a href="#" class="sdb-action-card">📊 Reports</a>
-    <a href="#" class="sdb-action-card">📢 Notices</a>
-    <a href="user.html" class="sdb-action-card">👤 Investor Login</a>
+  <div class="projects" style="grid-template-columns: repeat(auto-fit, minmax(180px,1fr));">
+    <a href="projects.html" class="card" style="text-align:center;">📁 View Projects</a>
+    <a href="#" class="card" style="text-align:center;">📊 Reports</a>
+    <a href="#" class="card" style="text-align:center;">📢 Notices</a>
+    <a href="user.html" class="card" style="text-align:center;">👤 Investor Login</a>
   </div>
-
 </section>
 
-<footer class="sdb-footer">
+<footer class="footer">
 © 2026 Sarker Design & Build
 </footer>
 
