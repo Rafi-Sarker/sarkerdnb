@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us - Sarker Design & Build</title>
 <link rel="stylesheet" href="style.css">
+
 <script defer>
 function toggleReviews(){
   const box = document.getElementById("reviewBox");
   box.style.display = box.style.display === "none" ? "flex" : "none";
 }
 </script>
+
 </head>
 <body>
 
@@ -40,7 +42,6 @@ function toggleReviews(){
 <!-- Main Content -->
 <div class="container">
 
-  <!-- About Intro -->
   <div class="card">
     <h2>About Sarker Design & Build</h2>
     <p>
@@ -51,26 +52,22 @@ function toggleReviews(){
     </p>
   </div>
 
-  <!-- Mission & Vision -->
   <div class="dashboard">
     <div class="card">
       <h3>Our Mission</h3>
       <p>
-        To provide dependable construction and consultancy services with full transparency, 
-        ensuring every client receives value, quality, and peace of mind.
+        To provide dependable construction and consultancy services with full transparency.
       </p>
     </div>
 
     <div class="card">
       <h3>Our Vision</h3>
       <p>
-        To build a trusted brand in the construction industry through consistency, 
-        professionalism, and long-term client relationships.
+        To build a trusted brand in the construction industry.
       </p>
     </div>
   </div>
 
-  <!-- Services -->
   <div class="card">
     <h2>Our Services</h2>
     <ul>
@@ -83,7 +80,6 @@ function toggleReviews(){
     </ul>
   </div>
 
-  <!-- Why Choose Us -->
   <div class="card">
     <h2>Why Choose Us?</h2>
     <ul>
@@ -95,7 +91,6 @@ function toggleReviews(){
     </ul>
   </div>
 
-  <!-- Project Gallery -->
   <div class="card">
     <h2>Project Gallery</h2>
     <div class="images">
@@ -106,48 +101,66 @@ function toggleReviews(){
     </div>
   </div>
 
+  <!-- Modern Founder Section -->
   <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
 
-  <!-- Founder Image -->
-  <div style="flex:1 1 150px; text-align:center;">
-    <img src="37.jpg" alt="Founder" style="
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      object-fit:cover;
-      box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    ">
-  </div>
+    <div style="flex:1 1 150px; text-align:center;">
+      <img src="37.jpg" alt="Founder" style="
+        width:120px;
+        height:120px;
+        border-radius:50%;
+        object-fit:cover;
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+      ">
+    </div>
 
-  <!-- Founder Content -->
-  <div style="flex:2 1 300px;">
-    <h2 style="margin:0;">Founder’s Message</h2>
-    <p style="margin-top:10px; font-style:italic; color:#555;">
-      “We don’t just construct buildings — we build trust.”
-    </p>
+    <div style="flex:2 1 300px;">
+      <h2 style="margin:0;">Founder’s Message</h2>
 
-    <p>
-      At Sarker Design & Build, every project reflects our commitment to quality, 
-      transparency, and long-term value. We focus on practical engineering solutions 
-      that ensure durability and client satisfaction.
-    </p>
+      <p style="margin-top:10px; font-style:italic; color:#555;">
+        “We don’t just construct buildings — we build trust.”
+      </p>
 
-    <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
-      — Engr. Sarker (Founder)
-    </p>
+      <p>
+        Every project reflects our commitment to quality, transparency, and long-term value.
+      </p>
+
+      <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
+        — Engr. Sarker
+      </p>
+    </div>
+
   </div>
 
 </div>
 
-</div>
+<!-- Floating Reviews Button (IMPORTANT FIX) -->
+<button onclick="toggleReviews()" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:gold;
+color:#0a2e6f;
+border:none;
+padding:12px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:999;
+">
+Reviews
+</button>
 
-<!-- Floating Reviews Button -->
+<!-- Review Box -->
 <div id="reviewBox" style="
 display:none;
 position:fixed;
 bottom:80px;
 right:20px;
 width:320px;
+max-height:400px;
+overflow-y:auto;
 background:#fff;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
@@ -157,34 +170,26 @@ z-index:999;
 animation: fadeIn 0.3s ease;
 ">
 
-<h3 style="margin-bottom:10px;">Client Reviews</h3>
+<h3>Client Reviews</h3>
 
-<!-- Review Item -->
 <div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
   <strong>Rahim Uddin</strong><br>
   ⭐⭐⭐⭐⭐
-  <p style="margin:5px 0 0; font-size:13px;">
-    Very professional and honest work. Highly recommended.
-  </p>
+  <p>Very professional and honest work.</p>
 </div>
 
 <div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
   <strong>Karim Hasan</strong><br>
   ⭐⭐⭐⭐⭐
-  <p style="margin:5px 0 0; font-size:13px;">
-    Completed project on time with great quality control.
-  </p>
+  <p>Project completed on time with quality.</p>
 </div>
 
 <div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
   <strong>Abdullah Khan</strong><br>
   ⭐⭐⭐⭐☆
-  <p style="margin:5px 0 0; font-size:13px;">
-    Good communication and clear explanation throughout the project.
-  </p>
+  <p>Good communication and support.</p>
 </div>
 
-<!-- Future Comment Button -->
 <button style="
 margin-top:10px;
 padding:10px;
@@ -195,7 +200,7 @@ border-radius:8px;
 font-weight:bold;
 cursor:pointer;
 ">
-Leave a Review
+Leave Review
 </button>
 
 <button onclick="toggleReviews()" style="
@@ -209,8 +214,6 @@ cursor:pointer;
 ">
 Close
 </button>
-
-</div>
 
 </div>
 
