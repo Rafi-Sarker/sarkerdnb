@@ -10,8 +10,23 @@
 <script>
 function toggleReviews(){
   const box = document.getElementById("reviewBox");
-  box.style.display = box.style.display === "none" ? "flex" : "none";
+  if (!box) return;
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
 }
+
+/* Optional UX upgrade (auto close when click outside) */
+document.addEventListener("click", function(e){
+  const box = document.getElementById("reviewBox");
+  const btn = e.target.closest("button");
+
+  if (!box) return;
+
+  if (box.style.display === "flex" &&
+      !box.contains(e.target) &&
+      (!btn || btn.innerText !== "Reviews")) {
+    box.style.display = "none";
+  }
+});
 </script>
 </head>
 
@@ -101,7 +116,6 @@ function toggleReviews(){
 
     <!-- Founder -->
     <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
-
       <div style="flex:1 1 150px; text-align:center;">
         <img src="37.jpg" alt="Founder" style="
           width:120px;
@@ -127,10 +141,9 @@ function toggleReviews(){
           — Engr. Sarker
         </p>
       </div>
-
     </div>
 
-  </div> <!-- END container -->
+  </div>
 
   <!-- Notice Card -->
   <div class="notice-card">
@@ -155,10 +168,27 @@ function toggleReviews(){
     © 2026 Sarker Design & Build | Civil Construction & Consultancy
   </div>
 
-</div> <!-- END dashboardPage -->
-
+</div>
 
 <!-- Reviews Button -->
+<button onclick="toggleReviews()" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:gold;
+color:#0a2e6f;
+border:none;
+padding:12px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:999;
+">
+Reviews
+</button>
+
+<!-- Review Box (DYNAMIC READY) -->
 <div id="reviewBox" style="
 display:none;
 position:fixed;
@@ -178,6 +208,7 @@ animation: fadeIn 0.3s ease;
 
 <h3>Client Reviews</h3>
 
+<!-- 🔥 DYNAMIC CONTENT -->
 <div id="reviewList"></div>
 
 <button onclick="window.location.href='user.html'" style="
