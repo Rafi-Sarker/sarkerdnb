@@ -7,17 +7,13 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== GLOBAL CONSISTENCY ===== */
-.section {
-    padding: 60px 20px;
-}
+.section { padding: 60px 20px; }
 
 .container {
     max-width: 1200px;
     margin: auto;
 }
 
-/* ===== REVEAL ===== */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -28,14 +24,12 @@
     transform: translateY(0);
 }
 
-/* ===== GRID (MATCH DASHBOARD STYLE) ===== */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
-/* ===== CARD UNIFIED ===== */
 .card {
     background: white;
     border-radius: 10px;
@@ -43,7 +37,6 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-/* ===== HERO ===== */
 .hero {
     height: 90vh;
     display: flex;
@@ -56,19 +49,9 @@
     padding: 20px;
 }
 
-/* ===== SLIDER ===== */
-.slider {
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.slide {
-    min-width: 100%;
-}
+.slider { overflow: hidden; }
+.slides { display: flex; transition: transform 0.5s ease; }
+.slide { min-width: 100%; }
 
 .slider-buttons {
     text-align: center;
@@ -89,14 +72,14 @@
 
 <body>
 
-<!-- HEADER (NOW MATCHES DASHBOARD STYLE) -->
+<!-- HEADER (MATCH DASHBOARD) -->
 <header class="header">
   <div class="header-inner">
 
     <div class="logo-container">
       <img src="37.jpg" class="logo-image" alt="Logo">
       <div class="logo-text">
-        <h2>Sarker Design & Build</h2>
+        <h2 class="logo">Sarker Design & Build</h2>
         <p class="motto">Building Trust Through Excellence</p>
       </div>
     </div>
@@ -116,7 +99,9 @@
   <div class="reveal">
     <h1 style="font-size:3rem;">We Build the Future</h1>
     <p>Engineering excellence with trust, precision, and innovation.</p>
-    <a href="#projects" class="cta">Explore Work</a>
+    <a href="#projects" class="cta" style="display:inline-block; width:auto; padding:10px 20px;">
+      Explore Work
+    </a>
   </div>
 </section>
 
@@ -184,13 +169,12 @@
   </div>
 </section>
 
-<!-- PROJECT SLIDER -->
+<!-- PROJECTS -->
 <section id="projects" class="section reveal">
   <div class="container">
     <h2 style="text-align:center;">Featured Projects</h2>
 
     <div class="slider">
-
       <div class="slides" id="slides">
 
         <div class="slide">
@@ -223,8 +207,8 @@
         <button onclick="prevSlide()">⬅ Prev</button>
         <button onclick="nextSlide()">Next ➡</button>
       </div>
-
     </div>
+
   </div>
 </section>
 
@@ -232,17 +216,18 @@
 <section class="section reveal" style="background:#0a2e6f; color:white; text-align:center;">
   <h2>Let’s Build Something Great</h2>
   <p>Start your project with confidence and trust.</p>
-  <a href="user.html" class="cta">Get Started</a>
+  <a href="user.html" class="cta" style="display:inline-block; width:auto; padding:10px 20px;">
+    Get Started
+  </a>
 </section>
 
-<!-- FOOTER (MATCH DASHBOARD STYLE) -->
+<!-- FOOTER -->
 <footer class="footer">
 © 2026 Sarker Design & Build | Civil Construction & Consultancy
 </footer>
 
 <!-- JS -->
 <script>
-// SCROLL REVEAL
 const elements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -257,7 +242,6 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-// SLIDER
 let index = 0;
 
 function showSlide() {
