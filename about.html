@@ -11,11 +11,21 @@ function toggleReviews(){
   const box = document.getElementById("reviewBox");
   box.classList.toggle("show");
 }
+
+document.addEventListener("click", function(e){
+  const box = document.getElementById("reviewBox");
+  const btn = document.querySelector(".review-btn");
+
+  if (!box.contains(e.target) && !btn.contains(e.target)) {
+    box.classList.remove("show");
+  }
+});
 </script>
 
 </head>
 <body>
 
+<!-- Header -->
 <div class="header">
   <div class="header-inner">
     
@@ -38,6 +48,7 @@ function toggleReviews(){
   </div>
 </div>
 
+<!-- Main -->
 <div class="container">
 
   <div class="card">
@@ -63,10 +74,10 @@ function toggleReviews(){
   <div class="card">
     <h2>Our Services</h2>
     <ul>
-      <li>Design</li>
-      <li>Project Management</li>
-      <li>Estimation</li>
-      <li>Supervision</li>
+      <li>Architectural & Structural Design</li>
+      <li>Construction Project Management</li>
+      <li>Estimation & Cost Planning</li>
+      <li>Site Supervision</li>
     </ul>
   </div>
 
@@ -113,7 +124,13 @@ function toggleReviews(){
 <div class="review-item">
   <strong>Karim Hasan</strong>
   <div>⭐⭐⭐⭐⭐</div>
-  <p>On time delivery.</p>
+  <p>Project completed on time with excellent quality.</p>
+</div>
+
+<div class="review-item">
+  <strong>Abdullah Khan</strong>
+  <div>⭐⭐⭐⭐☆</div>
+  <p>Good communication and support throughout.</p>
 </div>
 
 <a href="user.html" class="review-link">Leave Review</a>
@@ -121,8 +138,9 @@ function toggleReviews(){
 
 </div>
 
+<!-- Footer -->
 <div class="footer">
-  © 2026 Sarker Design & Build
+  © 2026 Sarker Design & Build | Civil Construction & Consultancy
 </div>
 
 </body>
