@@ -9,19 +9,18 @@
 <script defer>
 function toggleReviews(){
   const box = document.getElementById("reviewBox");
-  box.style.display = box.style.display === "none" ? "flex" : "none";
+  box.classList.toggle("show");
 }
 </script>
 
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
   <div class="header-inner">
     
     <div class="logo-container">
-      <img src="37.jpg" alt="Sarker Logo" class="logo-image">
+      <img src="37.jpg" class="logo-image">
       <div class="logo-text">
         <h2 class="logo">Sarker Design & Build</h2>
         <p class="motto">Building Trust Through Excellence</p>
@@ -39,55 +38,35 @@ function toggleReviews(){
   </div>
 </div>
 
-<!-- Main Content -->
 <div class="container">
 
   <div class="card">
     <h2>About Sarker Design & Build</h2>
     <p>
       Sarker Design & Build is a growing civil engineering consultancy and construction firm 
-      focused on delivering reliable, cost-effective, and high-quality projects. 
-      We integrate engineering precision with real-world construction experience 
-      to ensure every structure is strong, efficient, and sustainable.
+      focused on delivering reliable, cost-effective, and high-quality projects.
     </p>
   </div>
 
   <div class="dashboard">
     <div class="card">
       <h3>Our Mission</h3>
-      <p>
-        To provide dependable construction and consultancy services with full transparency.
-      </p>
+      <p>To provide dependable construction services with transparency.</p>
     </div>
 
     <div class="card">
       <h3>Our Vision</h3>
-      <p>
-        To build a trusted brand in the construction industry.
-      </p>
+      <p>To build a trusted construction brand.</p>
     </div>
   </div>
 
   <div class="card">
     <h2>Our Services</h2>
     <ul>
-      <li>Architectural & Structural Design</li>
-      <li>Construction Project Management</li>
-      <li>Estimation & Cost Planning</li>
-      <li>Site Supervision</li>
-      <li>Interior & Exterior Solutions</li>
-      <li>Renovation & Remodeling</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Why Choose Us?</h2>
-    <ul>
-      <li>✔ Engineering-based decision making</li>
-      <li>✔ Real site experience</li>
-      <li>✔ Honest communication</li>
-      <li>✔ Budget control focus</li>
-      <li>✔ Long-term durability mindset</li>
+      <li>Design</li>
+      <li>Project Management</li>
+      <li>Estimation</li>
+      <li>Supervision</li>
     </ul>
   </div>
 
@@ -101,125 +80,49 @@ function toggleReviews(){
     </div>
   </div>
 
-  <!-- Modern Founder Section -->
-  <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
-
-    <div style="flex:1 1 150px; text-align:center;">
-      <img src="37.jpg" alt="Founder" style="
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        object-fit:cover;
-        box-shadow:0 5px 15px rgba(0,0,0,0.2);
-      ">
+  <!-- Founder -->
+  <div class="card founder-card">
+    <div class="founder-img">
+      <img src="37.jpg">
     </div>
 
-    <div style="flex:2 1 300px;">
-      <h2 style="margin:0;">Founder’s Message</h2>
-
-      <p style="margin-top:10px; font-style:italic; color:#555;">
-        “We don’t just construct buildings — we build trust.”
-      </p>
-
-      <p>
-        Every project reflects our commitment to quality, transparency, and long-term value.
-      </p>
-
-      <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
-        — Engr. Sarker
-      </p>
+    <div class="founder-content">
+      <h2>Founder’s Message</h2>
+      <p class="quote">“We don’t just construct buildings — we build trust.”</p>
+      <p>We focus on quality, transparency, and long-term value.</p>
+      <p class="founder-name">— Engr. Sarker</p>
     </div>
-
   </div>
 
 </div>
 
-<!-- Floating Reviews Button (IMPORTANT FIX) -->
-<button onclick="toggleReviews()" style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:gold;
-color:#0a2e6f;
-border:none;
-padding:12px 18px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-z-index:999;
-">
-Reviews
-</button>
+<!-- Floating Button -->
+<button class="review-btn" onclick="toggleReviews()">Reviews</button>
 
 <!-- Review Box -->
-<div id="reviewBox" style="
-display:none;
-position:fixed;
-bottom:80px;
-right:20px;
-width:320px;
-max-height:400px;
-overflow-y:auto;
-background:#fff;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-padding:15px;
-flex-direction:column;
-z-index:999;
-animation: fadeIn 0.3s ease;
-">
+<div id="reviewBox" class="review-box">
 
 <h3>Client Reviews</h3>
 
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Rahim Uddin</strong><br>
-  ⭐⭐⭐⭐⭐
-  <p>Very professional and honest work.</p>
+<div class="review-item">
+  <strong>Rahim Uddin</strong>
+  <div>⭐⭐⭐⭐⭐</div>
+  <p>Very professional work.</p>
 </div>
 
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Karim Hasan</strong><br>
-  ⭐⭐⭐⭐⭐
-  <p>Project completed on time with quality.</p>
+<div class="review-item">
+  <strong>Karim Hasan</strong>
+  <div>⭐⭐⭐⭐⭐</div>
+  <p>On time delivery.</p>
 </div>
 
-<div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-  <strong>Abdullah Khan</strong><br>
-  ⭐⭐⭐⭐☆
-  <p>Good communication and support.</p>
-</div>
-
-<button onclick="window.location.href='user.html'" style="
-margin-top:10px;
-padding:10px;
-border:none;
-background:gold;
-color:#0a2e6f;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-">
-Leave Review
-</button>
-
-<button onclick="toggleReviews()" style="
-margin-top:8px;
-padding:8px;
-border:none;
-background:#0a2e6f;
-color:gold;
-border-radius:8px;
-cursor:pointer;
-">
-Close
-</button>
+<a href="user.html" class="review-link">Leave Review</a>
+<button onclick="toggleReviews()" class="close-btn">Close</button>
 
 </div>
 
-<!-- Footer -->
 <div class="footer">
-  © 2026 Sarker Design & Build | Civil Construction & Consultancy
+  © 2026 Sarker Design & Build
 </div>
 
 </body>
