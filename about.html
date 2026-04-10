@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us - Sarker Design & Build</title>
 <link rel="stylesheet" href="style.css">
+<script defer>
+function toggleReviews(){
+  const box = document.getElementById("reviewBox");
+  box.style.display = box.style.display === "none" ? "flex" : "none";
+}
+</script>
 </head>
 <body>
 
@@ -23,7 +29,8 @@
     <div class="nav">
       <a href="index.html">Dashboard</a>
       <a href="projects.html">Projects</a>
-      <a href="about.html">About us</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
       <a href="user.html">Login</a>
     </div>
 
@@ -35,34 +42,32 @@
 
   <!-- About Intro -->
   <div class="card">
-    <h2>About Us</h2>
+    <h2>About Sarker Design & Build</h2>
     <p>
-      <strong>Sarker Design & Build</strong> is a modern civil engineering consultancy and construction firm 
-      dedicated to delivering high-quality, reliable, and innovative building solutions. 
-      We combine engineering expertise with practical execution to ensure every project 
-      meets the highest standards of safety, durability, and design excellence.
+      Sarker Design & Build is a growing civil engineering consultancy and construction firm 
+      focused on delivering reliable, cost-effective, and high-quality projects. 
+      We integrate engineering precision with real-world construction experience 
+      to ensure every structure is strong, efficient, and sustainable.
     </p>
   </div>
 
   <!-- Mission & Vision -->
   <div class="dashboard">
-
     <div class="card">
       <h3>Our Mission</h3>
       <p>
-        To provide trustworthy construction and consultancy services while maintaining 
-        transparency, quality, and client satisfaction at every stage of the project.
+        To provide dependable construction and consultancy services with full transparency, 
+        ensuring every client receives value, quality, and peace of mind.
       </p>
     </div>
 
     <div class="card">
       <h3>Our Vision</h3>
       <p>
-        To become a leading name in the construction industry by building long-term 
-        relationships and delivering projects that stand the test of time.
+        To build a trusted brand in the construction industry through consistency, 
+        professionalism, and long-term client relationships.
       </p>
     </div>
-
   </div>
 
   <!-- Services -->
@@ -71,9 +76,9 @@
     <ul>
       <li>Architectural & Structural Design</li>
       <li>Construction Project Management</li>
-      <li>Cost Estimation & Planning</li>
-      <li>Site Supervision & Execution</li>
-      <li>Interior & Exterior Design</li>
+      <li>Estimation & Cost Planning</li>
+      <li>Site Supervision</li>
+      <li>Interior & Exterior Solutions</li>
       <li>Renovation & Remodeling</li>
     </ul>
   </div>
@@ -82,23 +87,98 @@
   <div class="card">
     <h2>Why Choose Us?</h2>
     <ul>
-      <li>✔ Strong technical knowledge in civil engineering</li>
-      <li>✔ Practical site experience</li>
-      <li>✔ Transparent communication</li>
-      <li>✔ Commitment to deadlines</li>
-      <li>✔ Client-focused approach</li>
+      <li>✔ Engineering-based decision making</li>
+      <li>✔ Real site experience</li>
+      <li>✔ Honest communication</li>
+      <li>✔ Budget control focus</li>
+      <li>✔ Long-term durability mindset</li>
     </ul>
   </div>
 
-  <!-- Founder Note -->
+  <!-- Project Gallery -->
+  <div class="card">
+    <h2>Project Gallery</h2>
+    <div class="images">
+      <img src="37.jpg">
+      <img src="3.jpg">
+      <img src="37.jpg">
+      <img src="3.jpg">
+    </div>
+  </div>
+
+  <!-- Founder Message -->
   <div class="card">
     <h2>Founder’s Message</h2>
     <p>
-      At Sarker Design & Build, we believe construction is not just about buildings — 
-      it's about trust, responsibility, and long-term value. Every project we take 
-      reflects our commitment to quality and integrity.
+      We don’t just construct buildings — we build trust. Every project we take is handled 
+      with responsibility, honesty, and a commitment to quality that reflects our values.
     </p>
   </div>
+
+</div>
+
+<!-- Floating Reviews Button -->
+<button onclick="toggleReviews()" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:gold;
+color:#0a2e6f;
+border:none;
+padding:12px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:999;
+">
+Reviews
+</button>
+
+<!-- Floating Review Box -->
+<div id="reviewBox" style="
+display:none;
+position:fixed;
+bottom:80px;
+right:20px;
+width:300px;
+background:#fff;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+padding:15px;
+flex-direction:column;
+z-index:999;
+animation: fadeIn 0.3s ease;
+">
+
+<h3>Client Reviews</h3>
+
+<div style="margin-bottom:10px;">
+  ⭐⭐⭐⭐⭐ <br>
+  <small>“Very professional and honest work.”</small>
+</div>
+
+<div style="margin-bottom:10px;">
+  ⭐⭐⭐⭐⭐ <br>
+  <small>“Project completed on time with quality.”</small>
+</div>
+
+<div style="margin-bottom:10px;">
+  ⭐⭐⭐⭐☆ <br>
+  <small>“Good communication and support.”</small>
+</div>
+
+<button onclick="toggleReviews()" style="
+margin-top:10px;
+padding:8px;
+border:none;
+background:#0a2e6f;
+color:gold;
+border-radius:8px;
+cursor:pointer;
+">
+Close
+</button>
 
 </div>
 
