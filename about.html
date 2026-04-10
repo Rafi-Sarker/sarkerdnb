@@ -5,153 +5,160 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us - Sarker Design & Build</title>
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 
-<script defer>
+<script>
 function toggleReviews(){
   const box = document.getElementById("reviewBox");
   box.style.display = box.style.display === "none" ? "flex" : "none";
 }
 </script>
-
 </head>
+
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div class="header-inner">
-    
-    <div class="logo-container">
-      <img src="37.jpg" alt="Sarker Logo" class="logo-image">
-      <div class="logo-text">
-        <h2 class="logo">Sarker Design & Build</h2>
-        <p class="motto">Building Trust Through Excellence</p>
+<div id="dashboardPage">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-inner">
+      
+      <div class="logo-container">
+        <img src="37.jpg" alt="Sarker Logo" class="logo-image">
+        <div class="logo-text">
+          <h2 class="logo">Sarker Design & Build</h2>
+          <p class="motto">Building Trust Through Excellence</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="user.html">Login</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <div class="card">
+      <h2>About Sarker Design & Build</h2>
+      <p>
+        Sarker Design & Build is a growing civil engineering consultancy and construction firm 
+        focused on delivering reliable, cost-effective, and high-quality projects. 
+        We integrate engineering precision with real-world construction experience 
+        to ensure every structure is strong, efficient, and sustainable.
+      </p>
+    </div>
+
+    <div class="dashboard">
+      <div class="card">
+        <h3>Our Mission</h3>
+        <p>To provide dependable construction and consultancy services with full transparency.</p>
+      </div>
+
+      <div class="card">
+        <h3>Our Vision</h3>
+        <p>To build a trusted brand in the construction industry.</p>
       </div>
     </div>
 
-    <div class="nav">
-      <a href="index.html">Dashboard</a>
-      <a href="projects.html">Projects</a>
-      <a href="about.html">About</a>
-      <a href="user.html">Login</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- Main Content -->
-<div class="container">
-
-  <div class="card">
-    <h2>About Sarker Design & Build</h2>
-    <p>
-      Sarker Design & Build is a growing civil engineering consultancy and construction firm 
-      focused on delivering reliable, cost-effective, and high-quality projects. 
-      We integrate engineering precision with real-world construction experience 
-      to ensure every structure is strong, efficient, and sustainable.
-    </p>
-  </div>
-
-  <div class="dashboard">
     <div class="card">
-      <h3>Our Mission</h3>
-      <p>
-        To provide dependable construction and consultancy services with full transparency.
-      </p>
+      <h2>Our Services</h2>
+      <ul>
+        <li>Architectural & Structural Design</li>
+        <li>Construction Project Management</li>
+        <li>Estimation & Cost Planning</li>
+        <li>Site Supervision</li>
+        <li>Interior & Exterior Solutions</li>
+        <li>Renovation & Remodeling</li>
+      </ul>
     </div>
 
     <div class="card">
-      <h3>Our Vision</h3>
-      <p>
-        To build a trusted brand in the construction industry.
-      </p>
+      <h2>Why Choose Us?</h2>
+      <ul>
+        <li>✔ Engineering-based decision making</li>
+        <li>✔ Real site experience</li>
+        <li>✔ Honest communication</li>
+        <li>✔ Budget control focus</li>
+        <li>✔ Long-term durability mindset</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Project Gallery</h2>
+      <div class="images">
+        <img src="37.jpg">
+        <img src="3.jpg">
+        <img src="37.jpg">
+        <img src="3.jpg">
+      </div>
+    </div>
+
+    <!-- Founder -->
+    <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
+
+      <div style="flex:1 1 150px; text-align:center;">
+        <img src="37.jpg" alt="Founder" style="
+          width:120px;
+          height:120px;
+          border-radius:50%;
+          object-fit:cover;
+          box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        ">
+      </div>
+
+      <div style="flex:2 1 300px;">
+        <h2 style="margin:0;">Founder’s Message</h2>
+
+        <p style="margin-top:10px; font-style:italic; color:#555;">
+          “We don’t just construct buildings — we build trust.”
+        </p>
+
+        <p>
+          Every project reflects our commitment to quality, transparency, and long-term value.
+        </p>
+
+        <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
+          — Engr. Sarker
+        </p>
+      </div>
+
+    </div>
+
+  </div> <!-- END container -->
+
+  <!-- Notice Card -->
+  <div class="notice-card">
+    <h3>
+      Updates 
+      <span id="noticeCount" class="notice-badge">0</span>
+    </h3>
+    <div id="noticeList"></div>
+  </div>
+
+  <!-- Notice Modal -->
+  <div id="noticeModal" class="notice-modal">
+    <div class="notice-box">
+      <h2 id="noticeTitle"></h2>
+      <p id="noticeMessage"></p>
+      <button onclick="closeNotice()">Close</button>
     </div>
   </div>
 
-  <div class="card">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Architectural & Structural Design</li>
-      <li>Construction Project Management</li>
-      <li>Estimation & Cost Planning</li>
-      <li>Site Supervision</li>
-      <li>Interior & Exterior Solutions</li>
-      <li>Renovation & Remodeling</li>
-    </ul>
+  <!-- Footer -->
+  <div class="footer">
+    © 2026 Sarker Design & Build | Civil Construction & Consultancy
   </div>
 
-  <div class="card">
-    <h2>Why Choose Us?</h2>
-    <ul>
-      <li>✔ Engineering-based decision making</li>
-      <li>✔ Real site experience</li>
-      <li>✔ Honest communication</li>
-      <li>✔ Budget control focus</li>
-      <li>✔ Long-term durability mindset</li>
-    </ul>
-  </div>
+</div> <!-- END dashboardPage -->
 
-  <div class="card">
-    <h2>Project Gallery</h2>
-    <div class="images">
-      <img src="37.jpg">
-      <img src="3.jpg">
-      <img src="37.jpg">
-      <img src="3.jpg">
-    </div>
-  </div>
 
-  <!-- Modern Founder Section -->
-  <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
-
-    <div style="flex:1 1 150px; text-align:center;">
-      <img src="37.jpg" alt="Founder" style="
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        object-fit:cover;
-        box-shadow:0 5px 15px rgba(0,0,0,0.2);
-      ">
-    </div>
-
-    <div style="flex:2 1 300px;">
-      <h2 style="margin:0;">Founder’s Message</h2>
-
-      <p style="margin-top:10px; font-style:italic; color:#555;">
-        “We don’t just construct buildings — we build trust.”
-      </p>
-
-      <p>
-        Every project reflects our commitment to quality, transparency, and long-term value.
-      </p>
-
-      <p style="margin-top:10px; font-weight:bold; color:#0a2e6f;">
-        — Engr. Sarker
-      </p>
-    </div>
-
-  </div>
-
-</div>
-  <!-- Floating Notice Card -->
-<div class="notice-card">
-  <h3>
-  Updates 
-  <span id="noticeCount" class="notice-badge">0</span>
-  </h3>
-  <div id="noticeList"></div>
-</div>
-
-<!-- Popup Modal -->
-<div id="noticeModal" class="notice-modal">
-  <div class="notice-box">
-    <h2 id="noticeTitle"></h2>
-    <p id="noticeMessage"></p>
-    <button onclick="closeNotice()">Close</button>
-  </div>
-</div>
-  </div>
-
-<!-- Floating Reviews Button (IMPORTANT FIX) -->
+<!-- Reviews Button -->
 <button onclick="toggleReviews()" style="
 position:fixed;
 bottom:20px;
@@ -232,11 +239,6 @@ cursor:pointer;
 Close
 </button>
 
-</div>
-
-<!-- Footer -->
-<div class="footer">
-  © 2026 Sarker Design & Build | Civil Construction & Consultancy
 </div>
 
 </body>
