@@ -46,6 +46,10 @@
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     z-index: 999;
+    transition: 0.2s;
+}
+.review-btn:active {
+    transform: scale(0.95);
 }
 
 /* Review Box */
@@ -63,6 +67,7 @@
     padding: 15px;
     flex-direction: column;
     z-index: 999;
+    scroll-behavior: smooth;
 }
 
 .review-box.show {
@@ -74,6 +79,11 @@
     padding: 10px;
     border-radius: 10px;
     background: #f9f9f9;
+    transition: 0.3s;
+}
+.review-item:hover {
+    background: #f1f5ff;
+    transform: translateX(5px);
 }
 
 .review-link {
