@@ -167,21 +167,22 @@ function loadReviews() {
   const reviewUsers = investors.filter(i => i.comment && i.comment.trim() !== "");
 
   if (!reviewUsers.length) {
-    box.innerHTML = "<p style='font-size:13px;color:#777;'>No reviews yet</p>";
+    box.innerHTML = `<div class="review-empty">No reviews yet ⭐</div>`;
     return;
   }
 
   let html = "";
 
-  reviewUsers.forEach(u => {
-    const rating = Number(u.rating || 0);
+  reviewUsers.forEach((u, index) => {
+
+    const rating = Number(u.rating || 5);
     const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
 
     html += `
-      <div style="margin-bottom:12px; padding:10px; border-radius:10px; background:#f9f9f9;">
-        <strong>${u.name || u.username}</strong><br>
-        ${stars}
-        <p>${u.comment}</p>
+      <div class="review-card" style="animation-delay:${index * 0.05}s">
+        <strong>${u.name || u.username}</strong>
+        <div class="review-stars">${stars}</div>
+        <div>${u.comment}</div>
       </div>
     `;
   });
